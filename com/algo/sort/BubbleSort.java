@@ -1,37 +1,37 @@
 package com.algo.sort;
 
 /*
-BUBBLE SORT - Sorting Algorithm
-Complexity: O(n^2)
-it takes n*(n-1)/2 iterations to complete the algorithm
+BubbleSort
+While the invariant moves from length-1 to 1, the pointer (i) moves from 0 to invariant-1 and constantly checking if i > i+1. If i > i+1 then it swaps. 
 */
-
-public class BubbleSort extends AbstractSort {
-	
-	public void sort(int[] elements){
-		/* Sanity Checks */
-		if(elements == null || elements.length < 2)
-			return;
-			
-		reset();
-		
-		int length = elements.length;
-
-		/* Bubble Sort Algorithm */
-		for(int i = length - 1; i > 1; i--){       //Outer Loop (backward)  
-			for(int j = 0; j < i; j++){              //Inner Loop (Forward)
-				if(elements[j] > elements[j+1])				 //Out of Order ?
-					swap(elements, j, j+1);		           // yes then swap
-				counter++;			
-			}                                        // end inner loop
-		}                                          // end outer loop
-		
-	} // Sort
-	
-	public String toString(){
-		return "Bubble Sort";
+public class BubbleSort extends AbstractSort{
+	public String name(){
+		return "BubbleSort 1.0";
 	}
 	
+	public String description(){
+		return "BubbleSort (1.0) algorithm has O(n^2) time complexity and constant space complexity";
+	}
 	
-} // BubbleSort
-
+	/*
+	*Sort Function
+	*@params array - Input array of comparable elements
+	*@return 
+	*/
+	public void sort(Comparable[] array){
+		this.elements = array;
+		if(!isValid()) return;
+		int length = this.elements.length;
+		
+		for(int invariant=length-1; invariant > 0; invariant--){
+			for(int i=0; i < invariant; i++){
+				if(elements[i].compareTo(elements[i+1]) > 0) 
+					swap(i, i+1);
+			}
+		}
+		
+		return;
+		
+	}
+	
+}

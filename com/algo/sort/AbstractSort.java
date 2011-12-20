@@ -1,31 +1,23 @@
 package com.algo.sort;
 
+import java.lang.Comparable;
+
 abstract class AbstractSort implements Sort{
-	protected int counter = 0;
-	protected int swaps = 0;
+	Comparable[] elements;
 	
-	abstract public void sort(int[] elements);
-	abstract public String toString();
+	protected boolean isValid(){
+		return (elements != null && elements.length > 0);
+	}
 	
-	public int getIterationCount(){ return counter; }
-	public int getSwapCount(){ return swaps; }
-	
-	protected void swap(int[] elements, int i, int j){
-		int tmp = elements[i];
+	/*
+	* Swap - swaps two elements
+	* @param i:int -- index of the element to be swapped
+	* @param j:init -- index of the element to be swapped with
+	*/
+	protected void swap(int i, int j){
+		Comparable tmp = elements[i];
 		elements[i] = elements[j];
 		elements[j] = tmp;
-		swaps++;
 	}
-	
-	protected void reset(){
-		counter = 0;
-		swaps = 0;
-	}
-	
-	
-	
-	
-	
 	
 }
-

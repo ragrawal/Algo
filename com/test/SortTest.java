@@ -1,47 +1,39 @@
 package com.test;
-
 import com.algo.sort.*;
-import java.util.Arrays;
 import java.util.Random;
+import java.util.Arrays;
+
 
 public class SortTest{
 	
 	public static void main(String[] args){
 		if(args.length < 2){
-			System.out.println("Usage: java SortTest <bubble|selection|insertion> <size>");
+			System.out.println("Usage: SortTest <Algorithm> <Number of Elements>");
+			System.out.println("Sort Algorithms: " + Arrays.toString(SortFactory.methods));
+			System.exit(0);
 		}
-		
-		Sort sort = null;
-		if("bubble".equalsIgnoreCase(args[0]))
-			sort = new BubbleSort();
-		else if ("selection".equalsIgnoreCase(args[0]))
-			sort = new SelectionSort();
-		else if ("insertion".equalsIgnoreCase(args[0]))
-			sort = new InsertionSort();
-		else if ("shell".equalsIgnoreCase(args[0]))
-			sort = new ShellSort();
-		else
-			sort = new QuickSort();
-		
-		int size = new Integer(args[1]).intValue();
 
-		int[] elements = new int[size];
+		//Generate Random elements
+		int length = new Integer(args[1]).intValue();
+	  Random random = new Random();
+	  Comparable[] elements = new Integer[length];
+		for(int i =0; i< length; i++)
+			elements[i]=(Comparable) random.nextInt(length * 10);
+
 		
-		Random rand = new Random();
-		for(int i=0; i<size; i++)
-			elements[i] = rand.nextInt(size*100);
+		//Create Sort using SortFactory
+		Sort sort = SortFactory.get(args[0]);
 		
-		elements = new int[]{1,8,2,9,5};
-		
-		System.out.println("=================");
-		System.out.println(sort);
-		System.out.println("=================");
-		
-		System.out.println("Original: " + Arrays.toString(elements));
+		//Debug Statemenets
+		System.out.println("==========================");
+		System.out.println(sort.name());
+		System.out.println(sort.description());
+		System.out.println("==========================");
+		System.out.println("Original Series: " + Arrays.toString(elements));
 		sort.sort(elements);
-		System.out.println("Sorted: " + Arrays.toString(elements));
-		System.out.println("Counter: " + sort.getIterationCount());
-		System.out.println("Swaps: " + sort.getSwapCount());
-	}
-}
+		System.out.println("Sorted Series: " + Arrays.toString(elements));
 	
+	}
+	
+	
+}

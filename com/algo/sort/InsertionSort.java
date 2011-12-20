@@ -1,34 +1,27 @@
 package com.algo.sort;
 
-public class InsertionSort extends AbstractSort {
-	
-	public void sort(int[] elements){
-		if(elements == null || elements.length < 2)
-			return;
-		
-		int length = elements.length;
-		
-		for(int i = 1; i < length; i++){        // forward loop
-			int pivot = elements[i];              // Store value
-			int j = i-1;
-		  while(j >= 0 && elements[j] > pivot ){ // backward loop 
-			  move(elements, j--);                 // move
-		 	  counter++;
-		  }
-			elements[++j] = pivot;                // insert
-		}
-	}
-	
-	private void move(int[] elements, int j){
-		elements[j+1] = elements[j];
-		swaps++;
-	}
-
-	
-	public String toString(){
+public class InsertionSort extends AbstractSort{
+	public String name(){
 		return "Insertion Sort";
 	}
 	
+	public String description(){
+		return "Time Complexity: O(N^2), Space Compexlity: constant";
+	}
 	
-} // BubbleSort
-
+	public void sort(Comparable[] array){
+		this.elements = array;
+		if(!isValid()) return;
+		
+		int length = elements.length;
+		for(int invariant=1; invariant <  length; invariant++){
+			Comparable value = elements[invariant];
+			int pointer = invariant-1;
+			for(; pointer >= 0 && elements[pointer].compareTo(value) > 0; pointer--)
+					swap(pointer, pointer+1);
+			elements[pointer+1] = value;
+		}
+		
+		return ;
+	}
+}

@@ -1,8 +1,7 @@
 package com.algo.sort;
 
 public interface Sort{
-	
-	int getIterationCount();
-	int getSwapCount();
-	void sort(int[] elements);
+	void sort(Comparable[] elements);
+	String name();
+	String description();
 }
