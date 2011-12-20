@@ -1,8 +1,19 @@
 #======================================
 ALGO - Java Data Structures and Algorithms
 #======================================
-This project is a tutorial on java data structures and algorithms.
+This project is a tutorial on java data structures and algorithms. Below is a quick instruction to compile and run test classes
 
-Data Structures Implementations
+======= QUICK SETUP AND RUN INSTRUCTIONS =========
+javac -d bin/ com/algo/sort/*.java
+javac -d bin/ com/test/SortTest.java
+java -cp bin/ com.test.SortTest BubbleSort 10
 
-Algorithm Implementations
+
+====== Sorting Algorithms =======
+  1. BubbleSort
+  2. SelectionSort
+  3. InsertionSort
+  
+To test sorting algorithm, use com.test.SortTest class. In requires to parameters: (1) name of the algorithm and (2)number of elements. For instance
+javac -
+  
