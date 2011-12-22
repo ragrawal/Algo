@@ -8,7 +8,7 @@ public class SortTest{
 	
 	public static void main(String[] args){
 		if(args.length < 2){
-			System.out.println("Usage: SortTest <Algorithm> <Number of Elements>");
+			System.out.println("Usage: SortTest [Algorithm] [Number of Elements]");
 			System.out.println("Sort Algorithms: " + Arrays.toString(SortFactory.methods));
 			System.exit(0);
 		}

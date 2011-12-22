@@ -15,6 +15,7 @@ abstract class AbstractSort implements Sort{
 	* @param j:init -- index of the element to be swapped with
 	*/
 	protected void swap(int i, int j){
+		if(i==j) return;
 		Comparable tmp = elements[i];
 		elements[i] = elements[j];
 		elements[j] = tmp;

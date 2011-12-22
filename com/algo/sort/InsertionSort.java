@@ -1,5 +1,8 @@
 package com.algo.sort;
 
+/*
+Insertion Sort
+*/
 public class InsertionSort extends AbstractSort{
 	public String name(){
 		return "Insertion Sort";
