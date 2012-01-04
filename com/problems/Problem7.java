@@ -6,8 +6,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Problem1 extends Problem{
-	public Problem1(){
+public class Problem7 extends Problem{
+	public Problem7(){
 		super();
 		// TODO: add all possible solutions
 		//this.solutions.add(new Solution1());
@@ -15,7 +15,7 @@ public class Problem1 extends Problem{
 
 	public String question(){
 		//TODO: describe question
-		//return "Given a matrix with m rows and n columns, each of which are sorted, write a function to efficently sort the entire matrix";
+		return "Given a matrix with m rows and n columns, each of which are sorted, write a function to efficently sort the entire matrix";
 	}
 	
 	public Map readParameters() throws Exception{
@@ -32,6 +32,7 @@ public class Problem1 extends Problem{
 	
 		return options;
 		*/
+		return null;
 	}
 	
 	
@@ -45,17 +46,17 @@ public class Problem1 extends Problem{
 		
 		public String describe(){
 			//TODO: descibe your solution and its limitation
-			//return "Initializes an empty boolean vector of length 256 (assuming ASCII) and set everything to false intially. For each character, check if corresponding index is true or not. If true then string contains duplicates. Otherwise set the corresponding index to true.";
+			return "Initializes an empty boolean vector of length 256 (assuming ASCII) and set everything to false intially. For each character, check if corresponding index is true or not. If true then string contains duplicates. Otherwise set the corresponding index to true.";
 		}
 		
 		public String timeComplexity(){
 			//TODO: return time complexity of the solution
-			//return "O(N^2)";
+			return "O(N^2)";
 		}
 		
 		public String spaceComplexity(){
 			//TODO: return space complexity of the solution
-			//return "O(1)";
+			return "O(1)";
 		}
 		
 	}
