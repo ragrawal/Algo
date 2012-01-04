@@ -19,19 +19,7 @@ public class Problem1 extends Problem{
 	}
 	
 	public Map readParameters() throws Exception{
-		/* 
-		//TODO: read parameters from command line and return a hashmap
-		// which will be passed to all solutions
 		
-		Map<String, String> options = new HashMap<String, String>();
-		InputStreamReader isr = new InputStreamReader(System.in);
-		BufferedReader reader = new BufferedReader(isr);
-
-		System.out.print("Enter String: ");
-		options.put("str", reader.readLine());
-	
-		return options;
-		*/
 	}
 	
 	

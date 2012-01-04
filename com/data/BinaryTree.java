@@ -8,7 +8,7 @@ public class BinaryTree{
    {
    	
    	if(head == null){
-   	    head = new Node(element);
+   	b    head = new Node(element);
    	    return
         }
         Node current = head;

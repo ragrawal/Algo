@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import com.algo.sort.BubbleSort;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Problem4 extends Problem{
@@ -15,16 +15,16 @@ public class Problem4 extends Problem{
 	}
 
 	public String question(){
-		return "Write a function to get all possible subsets (Powerset problem). Number of subsets will be equal to 2^n where n is the number of elements";
+		return "Write a function to get all possible subsets (Powerset problem). Hint: number of subsets will be equal to 2^n where n is the number of elements";
 	}
 	
 	public Map readParameters() throws Exception{
 		Map<String, Object> options = new HashMap<String, Object>();
-		ArrayList<Comparable> items = new ArrayList<Comparable();
+		ArrayList<Comparable> items = new ArrayList<Comparable>();
 		
 		InputStreamReader isr = new InputStreamReader(System.in);
 		BufferedReader reader = new BufferedReader(isr);
-		final String quit = "q"
+		final String quit = "q";
 		while(true){
 			System.out.print("Enter element (press q if done): ");
 			String item = reader.readLine();
@@ -45,19 +45,18 @@ public class Problem4 extends Problem{
 			//Sanity Check
 			int n = items.size();
 			if(n >= 64){
-				System.out.println("Error: Array length greater than 64")
-				return;
+			    System.out.println("Error: Array length greater than 64");
+			    return;
 			}
 			
 			
 			for(long i=0; i < (1<<n); i++){ // run from 0 to 2^n 
 				ArrayList<Comparable> subset = new ArrayList<Comparable>();
-				for(int j=0; j < n; j++){     //search through n bits
-					if((i>>j) & 1) == 1){       //left shift i by j and check first bit 
-						subset.add(itmes.get(j)); // if on then store it
-					}
+				for(int j=0; j < n; j++){        //search through n bits
+				   if(((i>>j) & 1) == 1)          //left shift i by j and check first bit 
+				       subset.add(items.get(j)); // if on then store it
 				}
-				System.out.println(Arrays.toString(subset));
+				System.out.println(Arrays.toString(subset.toArray()));
 			}
 			
 			/* Simpler Representation
@@ -77,11 +76,10 @@ public class Problem4 extends Problem{
 			
 			return;
 			
-			
 		}
 		
 		public String describe(){
-			return "Uses BitMasking technique to generate all possible subsets. Incrment counter by 1 at each iterature and select elements for which bit value is 1"
+			return "Uses BitMasking technique to generate all possible subsets. Incrment counter by 1 at each iterature and select elements for which bit value is 1";
 		}
 
 		public String timeComplexity(){

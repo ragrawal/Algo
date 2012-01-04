@@ -49,7 +49,7 @@ public class ProblemTest{
 		
 		for(int i=0; i < count; i++){
 			System.out.println("===== SOLUTION " + (i+1) + " =======");
-			Solution sol = problem.getSolution(0);
+			Solution sol = problem.getSolution(i);
 			System.out.println(sol.describe());
 			System.out.println("Time Complexity: " + sol.timeComplexity());
 			System.out.println("Space Complexity: " + sol.spaceComplexity());
