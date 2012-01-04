@@ -10,7 +10,7 @@ QuickSort
 	<li>Operators by partitioning an array into two subarrays and then calling itself recursively two sort each of these subarrays.</li>
 </ul>
 */
-public class QuickSort extends AbstractSort{
+public class QuickSortV2 extends AbstractSort{
 	public String name(){
 		return "QuickSort 2.0 -- Median of three approach";
 	}

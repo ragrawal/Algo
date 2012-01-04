@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public abstract class Problem{
 	protected ArrayList<Solution> solutions = new ArrayList<Solution>();
 	
-	public abstract String question();
+	abstract public String question();
 	
 	public int solutionCount(){
 		return solutions.size();

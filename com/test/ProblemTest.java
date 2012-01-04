@@ -2,11 +2,39 @@ package com.test;
 
 import com.problems.*;
 import java.util.Map;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class ProblemTest{
 	public static void main(String[] args){
-		Problem problem = new Problem1();
+		ProblemService ps = ProblemService.getInstance();
+		ArrayList<Problem> problems = ps.getProblems();
+		System.out.println("Total Number of Problems: " + problems.size());
+		for(int i=0; i< problems.size(); i++)
+		    System.out.println(i + ": " + problems.get(i).question());
+		
+		System.out.print("Enter Question Number:");
+		InputStreamReader isr = new InputStreamReader(System.in);
+		BufferedReader reader = new BufferedReader(isr);
+		Integer number = 0;
+		
+		try{
+		    number = new Integer(reader.readLine());
+		    if(number < 0 || number >= problems.size()) 
+		    	throw new Exception("Question Number out of bounds");
+		    	
+		}catch(Exception ex){
+		    System.out.println(ex.getMessage());
+		    System.exit(-1);
+		}
+		Problem problem = problems.get(number.intValue());
+		
+		System.out.println("=================================");
 		System.out.println("Question: " + problem.question());
+		
+		
 		
 		int count = problem.solutionCount();
 		System.out.println("Number of solutions: " + count);
