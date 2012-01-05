@@ -14,7 +14,7 @@ public class Problem1 extends Problem{
 	}
 
 	public String question(){
-		return "Explain the problem here";
+		return "Find the least common ancestore of two nodes in a binary tree. A least common ancestor is a node that of which both the give nodes are descendant.";
 	}
 	
 	public Map readParameters() throws Exception{

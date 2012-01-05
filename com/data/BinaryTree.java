@@ -1,8 +1,13 @@
 package com.data;
 
+import java.util.ArrayList;
+import java.util.Queue;
+import java.util.LinkedList;
+import java.util.Stack;
+
 public class BinaryTree{
    private Node head;
-   
+   private int length = 0 ;
    
    public void add(Comparable element)
    {
@@ -10,6 +15,7 @@ public class BinaryTree{
    	Node nn = new Node(element);
    	if(head == null){
    	    head = nn;
+   	    length++;
    	    return;
         }
         
@@ -33,14 +39,93 @@ public class BinaryTree{
         else
            parent.left = nn;
         
+        length++;
         return;
 
    }
    
+   //pre-order traversal
+   public Comparable[] preOrderUsingLoop(){
+      Stack<Node> stack = new Stack<Node>();
+      stack.push(head);
+      Comparable[] elements = new Comparable[length];
+      int counter = 0;
+      while(!stack.isEmpty()){
+          Node current = stack.pop();
+          if(current == null) continue;
+          elements[counter++] = current.value;
+          stack.push(current.right);
+          stack.push(current.left);
+      }
+      
+      return elements;
+   }
+   
+   public Comparable[] preOrder(){ return traverse("preOrder"); }
+   public Comparable[] inOrder() { return traverse("inorder"); }
+   public Comparable[] postOrder() { return traverse("postorder"); }
+   public Comparable[] levelOrder() { return traverse("levelorder"); }
+   
+   protected Comparable[] traverse(final String type){
+   	ArrayList<Comparable> store = new ArrayList<Comparable>();
+   	if("preorder".equalsIgnoreCase(type))
+   	    preOrder(head, store);
+   	else if("inorder".equalsIgnoreCase(type))
+   	    inOrder(head, store);
+   	else if("postorder".equalsIgnoreCase(type))
+   	    postOrder(head, store);
+   	else if("levelOrder".equalsIgnoreCase(type))
+   	    levelOrder(head, store);
+   	else
+   	    preOrder(head, store);
+   	
+   	int size = store.size();
+   	Comparable[] elements = new Comparable[size];
+   	for(int i=0; i< size; i++)
+   		elements[i] = store.get(i);
+   	return elements;
+   }
+   
+   private void preOrder(Node node, ArrayList<Comparable> store){
+   	if(node == null) return;
+   	store.add(node.value);
+   	preOrder(node.left, store);
+   	preOrder(node.right, store);
+   }
+   
+   // In order returns sorted tree
+   private void inOrder(Node node, ArrayList<Comparable> store){
+   	if(node == null) return;
+   	inOrder(node.left, store);
+   	store.add(node.value);
+   	inOrder(node.right, store);
+   	return;
+   }
+   
+   //Post Order
+   private void postOrder(Node node, ArrayList<Comparable> store){
+   	if(node == null) return;
+   	postOrder(node.left, store);
+   	postOrder(node.right, store);
+   	store.add(node.value);
+   	return;
+   }
+   
+   // breadth first traverse -- level order
+   private void levelOrder(Node node, ArrayList<Comparable> store){
+     Queue<Node> queue = new LinkedList<Node>();
+     queue.offer(node);
+     while(!queue.isEmpty()){
+         Node current = queue.poll();
+         if(current == null) continue;
+         store.add(current.value);
+         queue.offer(current.left);
+         queue.offer(current.right);
+     }
+   }
    
    public void print(){
-   	print(head, 0);
-   	
+   	print(head, 0);	
    }
    
    private void print(Node node, int level)
