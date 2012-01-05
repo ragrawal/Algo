@@ -6,20 +6,29 @@ public class BinaryTree{
    
    public void add(Comparable element)
    {
-   	
+   	// if head is null, add to head
+   	Node nn = new Node(element);
    	if(head == null){
-   	b    head = new Node(element);
-   	    return
+   	    head = nn;
+   	    return;
         }
+        
+        //find the position where to add the node
         Node current = head;
         Node parent = head;
         while(current != null){
-            parent = current;
-            current = (element.compareTo(current.value) > 0 ) ? current.right : current.left;   
+            parent = current;                         // update parent
+            
+            //if element is greater than current
+            // then go right else go left
+            current =  (element.compareTo(current.value) > 0) ? 
+            			current.right : 
+            			current.left;
         }
         
-        Node nn = new Node(element);
-        if(element.compareTo(parent))
+        // if element greater than parent
+        // then add to right else add to left;
+        if(element.compareTo(parent.value) > 0 )            
            parent.right = nn;
         else
            parent.left = nn;
@@ -28,45 +37,25 @@ public class BinaryTree{
 
    }
    
-   public void print()
-   {
    
+   public void print(){
+   	print(head, 0);
+   	
    }
    
-   
-   public Comparable removeFirst(Comparable element)
+   private void print(Node node, int level)
    {
-   }
-   
-   public Comparable removeLast(Comparable element)
-   {
-   }
-   
-   public Comparable removeAll(Comparable element)
-   {
-   }
-   
-   private boolean remove(Node node)
-   {
-   
+   	if(node == null) return;
+	for(int i=0; i < 2*(level-1); i++) System.out.print(" ");
+	if(level > 0) System.out.print("|-");
+	System.out.println(node.value); 
+	print(node.left, level+1);
+	print(node.right, level+1);
    }
    
    
    
-   /*
-   * Function:get
-   * Finds a node corresponding to a given element. 
-   *@params elements:Comparable -- Element 
-   *@params 
-   */
-   private Map<String, Node> get(Comparable element, String option)
-   {
-   
-   }
-   
-   
-   
-   
+   /* Inner Data Structure */
    protected class Node{
    	protected Node left;
    	protected Node right;
@@ -82,5 +71,6 @@ public class BinaryTree{
    	    right = right;
    	}
    }
+   
 
 }
