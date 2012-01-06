@@ -1,4 +1,4 @@
-package com.problems;
+package com.problems.BinaryTree;
 
 import java.util.Map;
 import java.util.HashMap;
