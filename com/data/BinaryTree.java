@@ -44,6 +44,9 @@ public class BinaryTree{
 
    }
    
+   public Node getRoot(){ return getHead(); }
+   public Node getHead(){ return head; }
+   
    //pre-order traversal
    public Comparable[] preOrderUsingLoop(){
       Stack<Node> stack = new Stack<Node>();
@@ -141,7 +144,7 @@ public class BinaryTree{
    
    
    /* Inner Data Structure */
-   protected class Node{
+   public class Node{
    	protected Node left;
    	protected Node right;
    	protected Comparable value;
@@ -155,6 +158,11 @@ public class BinaryTree{
    	    left = left;
    	    right = right;
    	}
+   	
+   	public Comparable value(){ return value; }
+   	public Node left(){ return left; }
+   	public Node right(){ return right; }
+   	
    }
    
 
