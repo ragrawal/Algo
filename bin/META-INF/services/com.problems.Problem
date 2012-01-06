@@ -1,6 +1,5 @@
-com.problems.Problem1
-com.problems.Problem2
-com.problems.Problem3
-com.problems.Problem4
-com.problems.Problem6
-com.problems.Problem9
+com.problems.search.Problem6
+com.problems.string.Problem1
+com.problems.string.Problem2
+com.problems.string.Problem3
+com.problems.trees.binary.Problem9
