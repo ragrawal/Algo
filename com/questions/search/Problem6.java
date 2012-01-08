@@ -1,11 +1,13 @@
-package com.problems.search;
+package com.questions.search;
 
 import java.util.Map;
 import java.util.HashMap;
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Stack;
+
+import com.questions.Problem;
+import com.questions.Solution;
 import com.util.ReadArray;
 
 public class Problem6 extends Problem{

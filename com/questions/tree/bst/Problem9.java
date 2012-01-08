@@ -1,10 +1,14 @@
-package com.problems.trees.binary;
+package com.questions.tree.bst;
+
 
 import java.util.Map;
 import java.util.HashMap;
 import com.util.Read;
 import com.data.BinaryTree;
 import java.util.Arrays;
+import com.questions.Problem;
+import com.questions.Solution;
+
 
 public class Problem9 extends Problem{
 	public Problem9(){

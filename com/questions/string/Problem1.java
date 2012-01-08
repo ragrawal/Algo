@@ -1,9 +1,10 @@
-package com.problems.string;
+package com.questions.string;
 
+import com.questions.Problem;
+import com.questions.Solution;
 import java.util.Map;
 import java.util.HashMap;
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Problem1 extends Problem{

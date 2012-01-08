@@ -1,3 +1,4 @@
+package com.questions;
 //Remove characters from String 
 //Inputs: String, removeArr[]
 //Approaches: O(n^2) -- search both

@@ -1,7 +1,6 @@
 package com.util;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Random;
 import com.data.BinaryTree;
@@ -9,11 +8,18 @@ import com.data.BinaryTree;
 public class Read{
     
     BufferedReader reader;
-    private static final String STOP = "q";
+    public static final String STOP = "q";
     
     public Read(){
         InputStreamReader isr = new InputStreamReader(System.in);
         reader = new BufferedReader(isr);
+    }
+    
+    public boolean stop(String word){
+    	if(word.equalsIgnoreCase("q")) return true;
+    	if(word.equalsIgnoreCase("quit")) return true;
+    	return false;
+    	
     }
     
     public Integer integer() throws Exception{
