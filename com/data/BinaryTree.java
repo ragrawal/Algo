@@ -44,6 +44,58 @@ public class BinaryTree{
 
    }
    
+   public void delete(Comparable element){
+	   //elemement can be
+	   // 1. leaf node 
+	   // 2. node with a single child
+	   // 3. node with two child
+	   
+	   Node current = head;
+	   Node parent = null;
+	   boolean isLeft = false;
+	   
+	   //Get element location
+	   while(current != null && element.compareTo(current.value) != 0){
+		   parent = current;
+		   if(element.compareTo(current.value) < 0){
+			   current = current.left;
+			   isLeft = true;
+		   }else{
+			   current = current.right;
+			   isLeft = false;
+		   }
+	   }
+	   
+	   if(current == null) return;
+	   int children = current.childrenCount();
+	   if(children == 0){
+		   	if(isLeft) parent.left = null;
+		   	else parent.right = null;
+	   }
+	   else if(children == 1){
+		   Node child = (current.left != null) ? current.left : current.right;
+		   if(isLeft) parent.left = child;
+		   else parent.right = child;
+	   }
+	   else {
+		   //find successor - 
+		   // go one left and then select right most leaf node
+		   // or go one right and select left most leaf node
+		   Node next = current.right;
+		   while(next.left != null) next = next.left;
+		   if(isLeft) parent.left = next;
+		   else parent.right = next;
+	   }
+	   
+	   //free node
+	   current.left = null;
+	   current.right = null;
+	   
+	   return;	 
+   }
+   
+   
+   
    public Node getRoot(){ return getHead(); }
    public Node getHead(){ return head; }
    
@@ -162,6 +214,12 @@ public class BinaryTree{
    	public Comparable value(){ return value; }
    	public Node left(){ return left; }
    	public Node right(){ return right; }
+   	public int childrenCount(){
+   		int counter = 0;
+   		if(left != null) counter++;
+   		if(right != null) counter++;
+   		return counter;
+   	}
    	
    }
    

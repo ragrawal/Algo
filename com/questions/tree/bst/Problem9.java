@@ -22,7 +22,7 @@ public class Problem9 extends Problem{
 	}
 	
 	public Map readParameters() throws Exception{
-	        Map<String, Object> options = new HashMap<String, Object>();
+	    Map<String, Object> options = new HashMap<String, Object>();
 	        
 		Read read = new Read();
 
