@@ -6,7 +6,12 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+import javax.swing.JPanel;
+
 public class ProblemTest{
+	
+	
+	
 	public static void main(String[] args){
 		ProblemService ps = ProblemService.getInstance();
 		ArrayList<Problem> problems = ps.getProblems();
