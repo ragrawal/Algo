@@ -43,13 +43,13 @@ public class Problem3 extends Problem{
 			return str.replaceAll("[^a-zA-Z0-9]", "");
 			
 		}
-		public void execute(Map options){
+		public void execute(Map options, PrintWriter writer){
 			
 			String[] str1 = process((String) options.get("str1")).split("");
 			String[] str2 = process((String) options.get("str2")).split("");
 			
 			if(str1.length != str2.length ){
-				System.out.println("Two strings are not anagrams");
+				writer.println("Two strings are not anagrams");
 				return;
 			}
 			
@@ -57,20 +57,20 @@ public class Problem3 extends Problem{
 			BubbleSort sort = new BubbleSort();
 			sort.sort(str1);
 			sort.sort(str2);
-			System.out.println("Sorted String1: " + Arrays.toString(str1));
-			System.out.println("Sorted String2: " + Arrays.toString(str2));
+			writer.println("Sorted String1: " + Arrays.toString(str1));
+			writer.println("Sorted String2: " + Arrays.toString(str2));
 			
 			
 			//check if elements are same
 			int length = str1.length;
 			for(int i=0; i< length; i++){
 				if(str1[i].compareTo(str2[i]) != 0){
-					System.out.println("Two strings are not anagrams");
+					writer.println("Two strings are not anagrams");
 					return;
 				}
 			}
 			
-			System.out.println("Two strings are anagrams");
+			writer.println("Two strings are anagrams");
 			return;
 			
 		

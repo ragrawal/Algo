@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 import com.data.BinaryTree;
 import com.data.SingleLinkedList;
@@ -41,6 +42,32 @@ public class Read{
     public ArrayList<Integer> intArray() throws Exception{
     	return intArray("Enter number (press q if done): ");
     }
+    public Comparable[][] intMatrix() throws Exception {
+ 	   writer.print("Enter Matrix Size (Row, Col): ");
+ 	   String[] numbers = reader.readLine().split(",");
+ 	   if(numbers.length < 2) return null;
+ 	   
+ 	   int row = new Integer(numbers[0]).intValue();
+ 	   int col = new Integer(numbers[1]).intValue();
+ 	
+ 	   Integer[][] matrix = new Integer[row][col];
+ 	   
+ 	   for(int i=0; i<row; i++){
+ 	   	writer.print("Enter Row " + i + " (separate elements by comma): ");
+ 	   	numbers = reader.readLine().split(",");
+ 	   	if(numbers.length < col) return null;
+ 	   	
+ 	   	for(int j=0; j<numbers.length; j++){
+ 	   		matrix[i][j] = new Integer(numbers[j]);
+ 	   	}
+ 	   }	
+ 	   return matrix;
+ 	}
+ 	
+
+    
+    
+    
 
     public ArrayList<Integer> intArray(String message) throws Exception{
     	ArrayList<Integer> elements = new ArrayList<Integer>();
@@ -59,6 +86,16 @@ public class Read{
     public String string(String message) throws Exception{
        writer.print(message); writer.flush();
        return reader.readLine();
+    }
+    public ArrayList<Comparable> strArray(String message) throws Exception{
+    	ArrayList<Comparable> elements = new ArrayList<Comparable>();
+    	String elem = null;
+    	while(true){
+    		elem = string(message);
+    		if(stop(elem)) break;
+    		elements.add((Comparable) elem);
+    	}
+    	return elements;
     }
     
     public BinaryTree randomBinaryTree() throws Exception{

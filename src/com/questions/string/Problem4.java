@@ -58,14 +58,14 @@ public class Problem4 extends Problem{
 		int docLength = -1;
 		
 		@Override
-		public void execute(Map options) {
+		public void execute(Map options, PrintWriter writer) {
 			
-			System.out.println("Step 1: Copy dictionary to a hashmap and " +
+			writer.println("Step 1: Copy dictionary to a hashmap and " +
 					"set value to -1");
 			ArrayList<String> lst = (ArrayList) options.get("dictionary");
 			for(String word: lst) dictionary.put(word, -1);
 			
-			System.out.println("Step 2: Iterature over document word by word");
+			writer.println("Step 2: Iterature over document word by word");
 			String[] doc = ((String) options.get("document")).split("\\s+");
 			docLength = doc.length;
 			
@@ -76,20 +76,20 @@ public class Problem4 extends Problem{
 			for(int i=0; i<docLength; i++){
 				String word = doc[i];
 				if(!dictionary.containsKey(word)) continue;
-				System.out.println("...Update position of " + word + " to " + i + " position");
+				writer.println("...Update position of " + word + " to " + i + " position");
 				dictionary.put(word, i);
 				int curLength = getSubStringLength();
 				length = (curLength != -1 && curLength < length) ? curLength : length;
 			}
 			
-			System.out.println("Substring Length: " + length);
+			writer.println("Substring Length: " + length);
 			if(length > docLength){
-				System.out.println("Failed to find all words.");
+				writer.println("Failed to find all words.");
 			}else{
 				Integer[] minMax = getMinMax();
-				System.out.print("Substring: ");
+				writer.print("Substring: ");
 				for(int i=minMax[0]; i <= minMax[1]; i++)
-					System.out.print(doc[i]);
+					writer.print(doc[i]);
 			}
 		}
 		

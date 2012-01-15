@@ -1,5 +1,7 @@
 package com.questions.linkedlist.single;
 
+import java.io.BufferedReader;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,11 +24,11 @@ public class Problem1 extends Problem{
 	}
 
 	@Override
-	public Map readParameters() throws Exception {
+	public Map readParameters(PrintWriter writer, BufferedReader reader) throws Exception {
 		Map<String, Object> options = new HashMap<String, Object>();
-		Read read = new Read();
+		Read read = new Read(writer, reader);
 		SingleLinkedList ssl = read.singleLinkedList();
-		ssl.print();
+		ssl.print(writer);
 		options.put("data", ssl);
 		return options;
 	}
@@ -34,7 +36,7 @@ public class Problem1 extends Problem{
 	public class Solution1 implements Solution{
 
 		@Override
-		public void execute(Map options) {
+		public void execute(Map options, PrintWriter writer) {
 			SingleLinkedList ssl = (SingleLinkedList) options.get("data");
 			int length = ssl.length();
 			SingleLinkedList.Node node = ssl.getHead();
@@ -42,17 +44,17 @@ public class Problem1 extends Problem{
 			if(length%2 == 0){
 				for(int i=0; i<length/2-1; i++)
 					node = node.getNext();
-				System.out.print("Middle elements are:");
-				System.out.print(node.getValue());
-				System.out.print(" and ");
-				System.out.println(node.getNext().getValue());
+				writer.print("Middle elements are:");
+				writer.print(node.getValue());
+				writer.print(" and ");
+				writer.println(node.getNext().getValue());
 				
 			}
 			//if odd number of elements then display one
 			else{
 				for(int i=0; i<length/2; i++)
 					node = node.getNext();
-				System.out.println("Middle element is: " + node.getValue());
+				writer.println("Middle element is: " + node.getValue());
 			}
 		}
 
@@ -77,7 +79,7 @@ public class Problem1 extends Problem{
 	public class Solution2 implements Solution{
 
 		@Override
-		public void execute(Map options) {
+		public void execute(Map options, PrintWriter writer) {
 			SingleLinkedList ssl = (SingleLinkedList) options.get("data");
 			SingleLinkedList.Node ptr1 = ssl.getHead();
 			SingleLinkedList.Node ptr2 = ssl.getHead();
@@ -92,12 +94,12 @@ public class Problem1 extends Problem{
 			}
 			
 			if(isOdd){
-				System.out.println("Middle element is: " + ptr1.getValue());
+				writer.println("Middle element is: " + ptr1.getValue());
 			}else{
-				System.out.print("Middle elements are:");
-				System.out.print(ptr1.getValue());
-				System.out.print(" and ");
-				System.out.println(ptr1.getNext().getValue());
+				writer.print("Middle elements are:");
+				writer.print(ptr1.getValue());
+				writer.print(" and ");
+				writer.println(ptr1.getNext().getValue());
 			}
 			
 		}

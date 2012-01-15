@@ -1,5 +1,7 @@
 package com.questions.linkedlist.single;
 
+import java.io.BufferedReader;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,11 +22,11 @@ public class Problem2 extends Problem{
 	}
 
 	@Override
-	public Map readParameters() throws Exception {
+	public Map readParameters(PrintWriter writer, BufferedReader reader) throws Exception {
 		Map<String, Object> options = new HashMap<String, Object>();
-		Read read = new Read();
+		Read read = new Read(writer, reader);
 		SingleLinkedList ssl = read.singleLinkedList();
-		ssl.print();
+		ssl.print(writer);
 		options.put("data", ssl);
 		
 		return options;
@@ -33,7 +35,7 @@ public class Problem2 extends Problem{
 	public class Solution1 implements Solution{
 
 		@Override
-		public void execute(Map options) {
+		public void execute(Map options, PrintWriter writer) {
 			SingleLinkedList ssl = (SingleLinkedList) options.get("data");
 			
 			//Sanity checks
@@ -53,8 +55,8 @@ public class Problem2 extends Problem{
 				current = next;
 			}
 			
-			System.out.println("Printing Reverse List:");
-			SingleLinkedList.print(prev);
+			writer.println("Printing Reverse List:");
+			SingleLinkedList.print(prev, writer);
 			
 		}
 

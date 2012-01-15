@@ -4,6 +4,7 @@ import com.questions.*;
 import java.util.Map;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
@@ -13,6 +14,8 @@ public class ProblemTest{
 	
 	
 	public static void main(String[] args){
+		PrintWriter writer = new PrintWriter(System.out, true);
+		
 		ProblemService ps = ProblemService.getInstance();
 		ArrayList<Problem> problems = ps.getProblems();
 		System.out.println("Total Number of Problems: " + problems.size());
@@ -58,7 +61,7 @@ public class ProblemTest{
 			System.out.println("Time Complexity: " + sol.timeComplexity());
 			System.out.println("Space Complexity: " + sol.spaceComplexity());
 			System.out.println("Result: ");
-			sol.execute(options);
+			sol.execute(options, writer);
 			System.out.println("\n\n\n");
 		}
 		

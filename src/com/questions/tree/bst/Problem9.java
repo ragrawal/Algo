@@ -35,7 +35,7 @@ public class Problem9 extends Problem{
 			read.randomBinaryTree();
 			
 		writer.println("========== GENERATE TREE ==============");
-		tree.print();
+		tree.print(writer);
 		writer.println("========== END OF TREE ==============");
 		
 		
@@ -56,7 +56,7 @@ public class Problem9 extends Problem{
 		private Comparable v1 = null;
 		private Comparable v2 = null;
 		
-		public void execute(Map options){
+		public void execute(Map options, PrintWriter writer){
 		    if(options == null) return;
 		    this.tree = (BinaryTree) options.get("tree");
 		    this.v1 = (Comparable) options.get("v1");
@@ -70,20 +70,20 @@ public class Problem9 extends Problem{
 		    
 		    //Sanity checks
 		    if(v1.compareTo(v2) == 0){
-		        System.out.println("Two values are same");
+		        writer.println("Two values are same");
 		        return;
 		    }
 		    
-		    System.out.println("Objective: find least common ancestor for " + v1 + ", " + v2);
+		    writer.println("Objective: find least common ancestor for " + v1 + ", " + v2);
 		    
-		    System.out.println("Step1: Generate InOrder List");
+		    writer.println("Step1: Generate InOrder List");
 		    Comparable[] inOrder = tree.inOrder();
 		    int length = inOrder.length;
-		    System.out.println(Arrays.toString(inOrder));
+		    writer.println(Arrays.toString(inOrder));
 		    
 		    
 		    // get candidate list. It all the nodes starting from v1 to v2
-		    System.out.println("\nStep2: Locate v1 and v2");
+		    writer.println("\nStep2: Locate v1 and v2");
 		    Map<Comparable, Comparable> candidates = new HashMap<Comparable, Comparable>();
 		    int i=0;
 		    while( i < length && inOrder[i].compareTo(v1) != 0) i++;
@@ -92,38 +92,38 @@ public class Problem9 extends Problem{
 		    
 		    //Sanity check
 		    if(i == length || j == -1){
-		        System.out.println("Either v1 or v2 or both are beyond valid range");
+		        writer.println("Either v1 or v2 or both are beyond valid range");
 		        return;
 		    }
-		    System.out.println("Candidates position: " + i + ", " + j);
+		    writer.println("Candidates position: " + i + ", " + j);
 		    
-		    System.out.println("\nStep3: Get Candidate list -- all nodes betwen v1 and v2 inclusive");
+		    writer.println("\nStep3: Get Candidate list -- all nodes betwen v1 and v2 inclusive");
 		    for(int k=i; k <= j; k++){
-		    	System.out.print(inOrder[k] + ", ");
+		    	writer.print(inOrder[k] + ", ");
 		    	candidates.put(inOrder[k], inOrder[k]);
 		    }
 		     
 		    
 		    if(candidates.size() == 2 || candidates.size() == 3){
-		        System.out.println("Ancestor is " + inOrder[i+1]);
+		        writer.println("Ancestor is " + inOrder[i+1]);
 		        return;
 		    } 
 		    
 		     
 		    //Get Post Order List
-		    System.out.println("\nStep4: Get Post Order List");
+		    writer.println("\nStep4: Get Post Order List");
 		    Comparable[] postOrder = tree.postOrder();
-		    System.out.println(Arrays.toString(postOrder));
+		    writer.println(Arrays.toString(postOrder));
 		    
 		    
-		    System.out.println("\n Step5: Find the candidate that appears last in postOrder");
+		    writer.println("\n Step5: Find the candidate that appears last in postOrder");
 		    for(int k=length-1; k>= 0; k--){
 		       if(!candidates.containsKey(postOrder[k])) continue;
-		       System.out.println("Ancestor is: " + postOrder[k]);
+		       writer.println("Ancestor is: " + postOrder[k]);
 		       return;
 		    }
 		    
-		    System.out.println("Failed to find any ancestor");
+		    writer.println("Failed to find any ancestor");
 		    return;
 		    
 		    
@@ -153,7 +153,7 @@ public class Problem9 extends Problem{
 		private Comparable v1 = null;
 		private Comparable v2 = null;
 		
-		public void execute(Map options){
+		public void execute(Map options, PrintWriter writer){
 		    if(options == null) return;
 		    this.tree = (BinaryTree) options.get("tree");
 		    this.v1 = (Comparable) options.get("v1");
@@ -167,16 +167,16 @@ public class Problem9 extends Problem{
 		    
 		    //Sanity checks
 		    if(v1.compareTo(v2) == 0){
-		        System.out.println("Two values are same");
+		        writer.println("Two values are same");
 		        return;
 		    }
 		    
-		    System.out.println("Objective: find least common ancestor for " + v1 + ", " + v2);
+		    writer.println("Objective: find least common ancestor for " + v1 + ", " + v2);
 		    
 		    BinaryTree.Node node = leastCommonAncestor(tree.getHead());
 		    
-		    if(node != null) System.out.println("Ancestor is: " + node.value());
-		    else System.out.println("Failed to find common ancestor");
+		    if(node != null) writer.println("Ancestor is: " + node.value());
+		    else writer.println("Failed to find common ancestor");
 		    
 		    
 		    	

@@ -39,7 +39,7 @@ public class Problem1 extends Problem{
 			read.randomBinaryTree();
 			
 		writer.println("========== GENERATE TREE ==============");
-		tree.print();
+		tree.print(writer);
 		writer.println("========== END OF TREE ==============");
 		options.put("tree", tree);
 		
@@ -49,7 +49,7 @@ public class Problem1 extends Problem{
 	public class Solution1 implements Solution{
 
 		@Override
-		public void execute(Map options) {
+		public void execute(Map options, PrintWriter writer) {
 			BinaryTree bt = (BinaryTree) options.get("tree");
 			Queue<Object> queue = new LinkedList<Object>();
 			
@@ -60,14 +60,14 @@ public class Problem1 extends Problem{
 				
 				Object current = queue.poll();
 				if(current == null){
-					System.out.println();
-					System.out.println("Size = " + queue.size());
+					writer.println();
+					writer.println("Size = " + queue.size());
 					// KEY STEP: BOUNDARY CONDITION 
 					if(queue.peek() != null) queue.add(null);
 				}
 				else{
 					Node node = (Node) current;
-					System.out.print(", " + node.value());
+					writer.print(", " + node.value());
 					if(node.left() != null) queue.add(node.left());
 					if(node.right()!= null) queue.add(node.right());
 				}

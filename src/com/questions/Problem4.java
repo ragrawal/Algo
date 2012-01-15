@@ -5,8 +5,11 @@ import java.util.HashMap;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import com.util.Read;
 
 public class Problem4 extends Problem{
 	public Problem4(){
@@ -18,28 +21,19 @@ public class Problem4 extends Problem{
 		return "Write a function to get all possible subsets (Powerset problem). Hint: number of subsets will be equal to 2^n where n is the number of elements";
 	}
 	
-	public Map readParameters() throws Exception{
+	@Override
+	public Map readParameters(PrintWriter writer, BufferedReader reader) throws Exception{
 		Map<String, Object> options = new HashMap<String, Object>();
-		ArrayList<Comparable> items = new ArrayList<Comparable>();
-		
-		InputStreamReader isr = new InputStreamReader(System.in);
-		BufferedReader reader = new BufferedReader(isr);
-		final String quit = "q";
-		while(true){
-			System.out.print("Enter element (press q if done): ");
-			String item = reader.readLine();
-			if(quit.equalsIgnoreCase(item)) break;
-			items.add(item);
-		}
-		
+		Read read = new Read(writer, reader);
+		ArrayList<Comparable> items = read.strArray("Enter element (press q if done):");
 		options.put("array", items);
 		return options;
-		
 	}
 	
 	public class Solution1 implements Solution{
 		
-		public void execute(Map options){
+		
+		public void execute(Map options, PrintWriter writer){
 			ArrayList<Comparable> items = (ArrayList<Comparable>) options.get("array");
 			
 			//Sanity Check
@@ -56,7 +50,7 @@ public class Problem4 extends Problem{
 				   if(((i>>j) & 1) == 1)          //left shift i by j and check first bit 
 				       subset.add(items.get(j)); // if on then store it
 				}
-				System.out.println(Arrays.toString(subset.toArray()));
+				writer.println(Arrays.toString(subset.toArray()));
 			}
 			
 			/* Simpler Representation
@@ -89,4 +83,5 @@ public class Problem4 extends Problem{
 			return "2^n";
 		}
 	}
+
 }

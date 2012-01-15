@@ -41,6 +41,7 @@ public class ProblemApplet extends JFrame implements Runnable, TreeSelectionList
 		container.add(getProblemsTree());
 		container.add(console);
 		add(container);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	@Override
@@ -49,6 +50,7 @@ public class ProblemApplet extends JFrame implements Runnable, TreeSelectionList
 		setVisible(true);
 
 	}
+	
 	
 	
 	private JScrollPane getProblemsTree(){
@@ -110,8 +112,11 @@ public class ProblemApplet extends JFrame implements Runnable, TreeSelectionList
 			for(int i=0; i<scount; i++){
 				out.println("===== solution " + i);
 				Solution s = problem.getSolution(i);
-				out.println(s.describe());out.flush();
-				s.execute(options);
+				out.println(s.describe());
+				out.println("Time Complexity: " + s.timeComplexity());
+				out.println("Space Complexity: " + s.spaceComplexity());
+				out.flush();
+				s.execute(options, out);
 				out.flush();
 			}
 			

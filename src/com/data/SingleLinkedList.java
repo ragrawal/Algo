@@ -1,5 +1,9 @@
 package com.data;
 
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class SingleLinkedList {
 	private Node head = null;
 	private int length = 0;
@@ -23,26 +27,34 @@ public class SingleLinkedList {
 	public int length(){ return length; }
 	
 	public void print(){
+		print(new PrintWriter(System.out, true));
+	}
+	public void print(PrintWriter writer){
 		if(isEmpty()){
-			System.out.println("List is empty");
+			writer.println("List is empty");
 			return;
 		}
 		Node current = head;
 		while(current != null){
-			System.out.print(current.value + " --> ");
+			writer.print(current.value + " --> ");
 			current = current.next;
 		}
-		System.out.println();
+		writer.println();
+		writer.flush();
 		return;
 	}
 	
 	public static void print(Node head){
+		print(head, new PrintWriter(System.out, true));
+	}
+	public static void print(Node head, PrintWriter writer){
 		Node current = head;
 		while(current != null){
-			System.out.print(current.value + " --> ");
+			writer.print(current.value + " --> ");
 			current = current.next;
 		}
-		System.out.println();
+		writer.println();
+		writer.flush();
 	}
 	
 	public boolean isEmpty(){

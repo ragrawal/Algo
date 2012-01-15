@@ -38,25 +38,25 @@ public class Problem1 extends Problem{
 		public String timeComplexity(){ return "O(N)"; }
 		public String spaceComplexity(){ return "O(1)"; }
 		
-		public void execute(Map options){
+		public void execute(Map options, PrintWriter writer){
 			String str = (String) options.get("str");
 			int checker = 0;
 			for(int i=0; i < str.length(); i++){
 				int val = str.charAt(i) - 'a';
 				if((checker & (1 << val)) > 0){
-					System.out.println("String characters are unique");
+					writer.println("String characters are unique");
 					return;
 				}
 				checker |= (1 << val);
 			}
-			System.out.println("String characters are unique");
+			writer.println("String characters are unique");
 			return;
 		}
 		
 	}
 	
 	public class Solution1 implements Solution{
-		public void execute(Map options){
+		public void execute(Map options, PrintWriter writer){
 			String str = (String) options.get("str");
 			// intialize boolean vector
 			boolean[] seen = new boolean[256];
@@ -64,13 +64,13 @@ public class Problem1 extends Problem{
 			for(int i=0; i < str.length(); i++){
 				int c = str.charAt(i);
 				if(seen[c]){
-					System.out.println("String characters are not unique");
+					writer.println("String characters are not unique");
 					return;
 				} 
 				seen[c] = true;
 			}
 			
-			System.out.println("String characters are unique.");
+			writer.println("String characters are unique.");
 			return;
 			
 		}

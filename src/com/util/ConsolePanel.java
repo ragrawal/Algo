@@ -94,7 +94,7 @@ public class ConsolePanel extends JInternalFrame  implements ComponentListener,A
 		fileMenu.add(new JMenuItem("Save as..."));
 		fileMenu.add(new JMenuItem("-"));
 		fileMenu.add(new JMenuItem("Exit"));
-		JMenuBar.add(fileMenu);
+		//JMenuBar.add(fileMenu);
 		
 		  // Create edit menu
 		
@@ -106,7 +106,7 @@ public class ConsolePanel extends JInternalFrame  implements ComponentListener,A
 		editMenu.add(new JMenuItem("Select all"));
 		editMenu.add(new JMenuItem("-"));
 		//    editMenu.add(new JMenuItem("Find..."));
-		JMenuBar.add(editMenu);
+		//JMenuBar.add(editMenu);
 		
 		  // Create font menu
 		
