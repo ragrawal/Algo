@@ -1,20 +1,14 @@
 #======================================
 ALGO - Java Data Structures and Algorithms
 #======================================
-This is a collection of various coding interview question. 
+This project provides solution to various java programming interview questions. There is an interactive applet (com.test.ProblemApplet ) that shows all the questions. Select one of the question in the applet to run it. In order to compile and run the project, use the following commands:
+
+Algo>cd src
+src>javac -d ../bin/ com/test/ProblemApplet.java 
+src>javac -d ../bin/ com/questions/*/*.java
+src>javac -d ../bin/ com/questions/tree/bst/*.java
+src>javac -d ../bin/ com/questions/linkedlist/single/*.java
+src>cd ..
+Algo>java -cp bin com.test.ProblemApplet
 
 
-<h2>Compile Instructions</h2>
-javac -d bin com/algo/sort/*.java
-javac -d bin com/util/*.java
-javac -d bin com/problems/*.java
-javac -d bin com/test/*.java
-
-<h2>Execute</h2>
-java -cp bin com.test.ProblemTest
-
-<ol>
-<li>Enter index number of the question you want to run</li>
-<li>Different questions require different input parameters. Now enter these parameters as specified </li>
-<li>Each question might have more than one solutions. ProblemTest class will go through each of these solutions and display the solution and its complexity</li>
-</ol>
