@@ -17,6 +17,7 @@ public class Problem4 extends Problem{
 		this.solutions.add(new Solution1());
 	}
 
+	public void tmp(){}
 	public String question(){
 		return "Write a function to get all possible subsets (Powerset problem). Hint: number of subsets will be equal to 2^n where n is the number of elements";
 	}
