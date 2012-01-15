@@ -2,19 +2,26 @@ package com.util;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Random;
 import com.data.BinaryTree;
 import com.data.SingleLinkedList;
 
 public class Read{
-    
+    PrintWriter writer; 
     BufferedReader reader;
     public static final String STOP = "q";
     
     public Read(){
+    	writer = new PrintWriter(System.out,true);
         InputStreamReader isr = new InputStreamReader(System.in);
         reader = new BufferedReader(isr);
+    }
+    
+    public Read(PrintWriter writer, BufferedReader reader){
+    	this.writer = writer;
+    	this.reader = reader;
     }
     
     public boolean stop(String word){
@@ -27,7 +34,7 @@ public class Read{
        return integer("Enter Integer:");
     }
     public Integer integer(String message) throws Exception{
-       System.out.print(message);
+       writer.print(message); writer.flush();
        return new Integer(reader.readLine());
     }
     
@@ -50,12 +57,12 @@ public class Read{
        return string("Enter string: ");
     }
     public String string(String message) throws Exception{
-       System.out.println(message);
+       writer.print(message); writer.flush();
        return reader.readLine();
     }
     
     public BinaryTree randomBinaryTree() throws Exception{
-        System.out.print("Enter total number of nodes: ");
+        writer.print("Enter total number of nodes: "); writer.flush();
         
         int length = new Integer(reader.readLine()).intValue(); 
         Random random = new Random();
@@ -68,7 +75,7 @@ public class Read{
     public BinaryTree binaryTree() throws Exception{
         BinaryTree tree = new BinaryTree();
         while(true){
-           System.out.print("Enter node value (enter q if done): ");
+           writer.print("Enter node value (enter q if done): "); writer.flush();
            String value = reader.readLine();
            if(STOP.equalsIgnoreCase(value)) break;
            tree.add(new Integer(value));
@@ -78,7 +85,7 @@ public class Read{
 
     public SingleLinkedList singleLinkedList() throws Exception{
     	SingleLinkedList sll = new SingleLinkedList();
-    	System.out.println("Creating a single linked list");
+    	writer.println("Creating a single linked list"); writer.flush();
     	ArrayList<Integer> elements = intArray();
     	for(Integer elem: elements)
     		sll.add(elem);

@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.HashMap;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
+
 import com.algo.sort.BubbleSort;
 import java.util.Arrays;
 
@@ -19,15 +21,14 @@ public class Problem3 extends Problem{
 		return "Write a method to decide if two strings are anagrams or not";
 	}
 	
-	public Map readParameters() throws Exception{
+	public Map readParameters(PrintWriter writer, BufferedReader reader) throws Exception{
 		Map<String, String> options = new HashMap<String, String>();
-		InputStreamReader isr = new InputStreamReader(System.in);
-		BufferedReader reader = new BufferedReader(isr);
+		
 
-		System.out.print("Enter String 1: ");
+		writer.print("Enter String 1: ");writer.flush();
 		options.put("str1", reader.readLine());
 
-		System.out.print("Enter String 2: ");
+		writer.print("Enter String 2: ");writer.flush();
 		options.put("str2", reader.readLine());
 		
 	

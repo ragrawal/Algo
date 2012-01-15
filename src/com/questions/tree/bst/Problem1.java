@@ -1,5 +1,7 @@
 package com.questions.tree.bst;
 
+import java.io.BufferedReader;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -25,10 +27,10 @@ public class Problem1 extends Problem{
 	}
 
 	@Override
-	public Map readParameters() throws Exception {
+	public Map readParameters(PrintWriter writer, BufferedReader reader) throws Exception {
 		Map<String, Object> options = new HashMap<String, Object>();
         
-		Read read = new Read();
+		Read read = new Read(writer, reader);
 
 		BinaryTree tree = null;
 		String treetype = read.string("Tree type (Manual/Random): ");
@@ -36,9 +38,9 @@ public class Problem1 extends Problem{
 			read.binaryTree() : 
 			read.randomBinaryTree();
 			
-		System.out.println("========== GENERATE TREE ==============");
+		writer.println("========== GENERATE TREE ==============");
 		tree.print();
-		System.out.println("========== END OF TREE ==============");
+		writer.println("========== END OF TREE ==============");
 		options.put("tree", tree);
 		
 		return options;

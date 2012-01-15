@@ -1,5 +1,7 @@
 package com.questions.string;
 
+import java.io.BufferedReader;
+import java.io.PrintWriter;
 import java.util.Map;
 
 import com.questions.Problem;
@@ -16,7 +18,7 @@ public class Problem5 extends Problem{
 	}
 
 	@Override
-	public Map readParameters() throws Exception {
+	public Map readParameters(PrintWriter writer, BufferedReader reader) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

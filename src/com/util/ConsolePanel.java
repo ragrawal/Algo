@@ -472,11 +472,17 @@ public class ConsolePanel extends JInternalFrame  implements ComponentListener,A
 	{
 		 String name = args.length >= 1 ? args[0] : "Console";
 		  ConsolePanel console = new ConsolePanel(name);
+		  JFrame frame = new JFrame();
+		  frame.add(console);
+		  frame.pack();
+		  frame.setVisible(true);
 		  PrintWriter out = console.PrintWriter();
 		  BufferedReader in = console.BufferedReader();
 		  out.println("ready");
-		 while (console.Active())
-		  {
+		  
+		  if(console.Active()==false) return;
+		 //while (console.Active())
+		//  {
 			out.print("> ");out.flush();
 			try 
 			{String str = in.readLine();
@@ -484,8 +490,8 @@ public class ConsolePanel extends JInternalFrame  implements ComponentListener,A
 			}
 			catch (IOException err) {
 				if(console.Active()) { System.out.println("Exception " + err);}; }
-		  } 
-		console.Always_Wait_For_Finish();
+		 // } 
+			console.Always_Wait_For_Finish();
 		//System.exit(0);
 	}
 

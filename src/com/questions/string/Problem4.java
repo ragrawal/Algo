@@ -1,5 +1,7 @@
 package com.questions.string;
 
+import java.io.BufferedReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
@@ -27,11 +29,11 @@ public class Problem4 extends Problem{
 	}
 
 	@Override
-	public Map readParameters() throws Exception {
+	public Map readParameters(PrintWriter writer, BufferedReader reader) throws Exception {
 		Map<String, Object> options = new HashMap<String, Object>();
 		
 		//Read dictionary
-		Read read = new Read();
+		Read read = new Read(writer, reader);
 		ArrayList<String> dictionary = new ArrayList<String>();
 		String word = null;
 		while(true){

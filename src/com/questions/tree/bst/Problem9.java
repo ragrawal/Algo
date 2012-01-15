@@ -1,6 +1,8 @@
 package com.questions.tree.bst;
 
 
+import java.io.BufferedReader;
+import java.io.PrintWriter;
 import java.util.Map;
 import java.util.HashMap;
 import com.util.Read;
@@ -21,10 +23,10 @@ public class Problem9 extends Problem{
 		return "Find the least common ancestore of two nodes in a binary tree. A least common ancestor is a node that of which both the give nodes are descendant.";
 	}
 	
-	public Map readParameters() throws Exception{
+	public Map readParameters(PrintWriter writer, BufferedReader reader) throws Exception{
 	    Map<String, Object> options = new HashMap<String, Object>();
 	        
-		Read read = new Read();
+		Read read = new Read(writer, reader);
 
 		BinaryTree tree = null;
 		String treetype = read.string("Tree type (Manual/Random): ");
@@ -32,9 +34,9 @@ public class Problem9 extends Problem{
 			read.binaryTree() : 
 			read.randomBinaryTree();
 			
-		System.out.println("========== GENERATE TREE ==============");
+		writer.println("========== GENERATE TREE ==============");
 		tree.print();
-		System.out.println("========== END OF TREE ==============");
+		writer.println("========== END OF TREE ==============");
 		
 		
 		options.put("tree", tree);

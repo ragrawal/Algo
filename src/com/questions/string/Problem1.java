@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 
 public class Problem1 extends Problem{
 	public Problem1(){
@@ -18,16 +19,15 @@ public class Problem1 extends Problem{
 		return "Implement an algorithm to determine if a string has all unique characters.";
 	}
 	
-	public Map readParameters() throws Exception{
-		Map<String, String> options = new HashMap<String, String>();
-		InputStreamReader isr = new InputStreamReader(System.in);
-		BufferedReader reader = new BufferedReader(isr);
-
-		System.out.print("Enter String: ");
-		options.put("str", reader.readLine());
 	
+	@Override
+	public Map readParameters(PrintWriter writer, BufferedReader reader)
+			throws Exception {
+		Map<String, String> options = new HashMap<String, String>();
+		writer.print("Enter String: "); 
+		writer.flush();
+		options.put("str", reader.readLine());
 		return options;
-		
 	}
 	
 	public class Solution2 implements Solution{
@@ -88,6 +88,8 @@ public class Problem1 extends Problem{
 		}
 		
 	}
+
+
 
 	
 }

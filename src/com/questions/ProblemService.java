@@ -34,6 +34,10 @@ public class ProblemService {
    	return service;
    }
    
+   public Iterator<Problem> getIterator(){
+	   return loader.iterator();
+   }
+   
    /**
    * Get List of problmes
    */
