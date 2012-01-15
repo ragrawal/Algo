@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 
 public class Problem7 extends Problem{
 	public Problem7(){
@@ -18,7 +19,7 @@ public class Problem7 extends Problem{
 		return "Given a matrix with m rows and n columns, each of which are sorted, write a function to efficently sort the entire matrix";
 	}
 	
-	public Map readParameters() throws Exception{
+	public Map readParameters(PrintWriter writer, BufferedReader reader) throws Exception{
 		/* 
 		//TODO: read parameters from command line and return a hashmap
 		// which will be passed to all solutions
@@ -38,7 +39,7 @@ public class Problem7 extends Problem{
 	
 	
 	public class Solution1 implements Solution{
-		public void execute(Map options){
+		public void execute(Map options, PrintWriter writer){
 			//TODO: write your function over here
 			return;
 			
