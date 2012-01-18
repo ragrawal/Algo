@@ -13,11 +13,4 @@ Algo>java -cp bin com.test.ProblemApplet
 
 
 
-LinkedList Problems:
-Write a code to determine if a linkedList is a pallidrome
-
-You are given two numbers in the form of linked list.Add them without reversing the linked lists. linked lists can be of any length.
-Ex:123 1->2->3
-10234 1->0->2->3->4
-ans: 10357 1->0->3->5->7
 
