@@ -84,6 +84,8 @@ public class Problem1 extends Problem{
 			SingleLinkedList.Node ptr1 = ssl.getHead();
 			SingleLinkedList.Node ptr2 = ssl.getHead();
 			boolean isOdd = false;
+			
+			
 			while(ptr2 != null){
 				ptr2 = ptr2.getNext();
 				
