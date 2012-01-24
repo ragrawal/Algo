@@ -40,23 +40,10 @@ public class Problem2 extends Problem{
 			
 			//Sanity checks
 			if(ssl.length() < 2) return;
+			ssl.reverse();
+			writer.print("Reverse Linked List: "); ssl.print(writer);
 			
-			SingleLinkedList.Node current = ssl.getHead();
-			SingleLinkedList.Node prev = null;
-			SingleLinkedList.Node next = null;
 			
-			while(current != null){
-				//get next pointer
-				next = current.getNext();
-				//set link from current to previous
-				current.setNext(prev);
-				//update pointers
-				prev = current;
-				current = next;
-			}
-			
-			writer.println("Printing Reverse List:");
-			SingleLinkedList.print(prev, writer);
 			
 		}
 
@@ -64,7 +51,7 @@ public class Problem2 extends Problem{
 		public String describe() {
 			return "Use three pointers to keep track of" +
 					"prev, current adn next node" +
-					"next. ";
+					"next. At the last set head to previous. ";
 		}
 
 		@Override

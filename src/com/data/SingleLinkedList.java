@@ -38,6 +38,11 @@ public class SingleLinkedList {
 		return;
 	}
 	
+	
+	public void setHead(Node head){
+		this.head = head;
+	}
+	
 	public Node getFirst(){return head;}
 	
 	public void addFirst(Comparable element){
@@ -45,6 +50,24 @@ public class SingleLinkedList {
 	}
 	public void addLast(Comparable element){
 		add(length, element);
+	}
+	
+	public void reverse(){
+		Node current = head;
+		Node prev = null;
+		Node next = null;
+		
+		while(current != null){
+			//get next pointer
+			next = current.getNext();
+			//set link from current to previous
+			current.setNext(prev);
+			//update pointers
+			prev = current;
+			current = next;
+		}
+		
+		head = prev;
 	}
 	
 	

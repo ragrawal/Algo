@@ -11,6 +11,24 @@ src>javac -d ../bin/ com/questions/linkedlist/single/*.java
 src>cd ..
 Algo>java -cp bin com.test.ProblemApplet
 
+Questions Remaining:
+1. Sort a link list using merge sort.
+2. Find 3rd largest element in an array 
+3. There is a linked list whose node has 3 fields, val, next pointer & random pointer...next 
+pointer points to next node in the list and random pointer can point to any node in the list.
+Write an efficient function which takes such list and returns the copy/clone of that list.
+http://www.careercup.com/question?id=9304676
 
+
+
+Data Structures Complexity: 
+Benefit of linkedlist over array:
+  * you don't need continuous space
+  * you don't need to predefined space
+  * efficiently utlization of space because you don't block any more space than currently required. 
+  
+  
+Benefits/Issues of single linked list and double linked list -- think of applications ?
+  
 
 

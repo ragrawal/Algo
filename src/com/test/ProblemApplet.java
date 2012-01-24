@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
@@ -99,9 +100,10 @@ public class ProblemApplet extends JFrame implements Runnable, TreeSelectionList
 	private void changeProblem(Problem problem){
 		if(problem == null) return;
 		if(console.Active() == false) return;
+		PrintWriter out = console.PrintWriter();
 		try{
 			while(true){
-				PrintWriter out = console.PrintWriter();
+				
 				BufferedReader in = console.BufferedReader();
 				out.println("\n\n=================== STARTING NEW PROBLEM ============");
 				out.println("Question: " + problem.question()); 
@@ -122,6 +124,9 @@ public class ProblemApplet extends JFrame implements Runnable, TreeSelectionList
 			}
 			
 		}catch(Exception ex){
+			out.println(ex);
+			ex.printStackTrace(out);
+			out.flush();
 			
 		}
 	}
