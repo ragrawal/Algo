@@ -6,7 +6,7 @@ import java.util.Queue;
 import java.util.LinkedList;
 import java.util.Stack;
 
-public class BinaryTree{
+public class BinarySearchTree{
    private Node head;
    private int length = 0 ;
    
@@ -18,30 +18,30 @@ public class BinaryTree{
    	    head = nn;
    	    length++;
    	    return;
-        }
+    }
         
-        //find the position where to add the node
-        Node current = head;
-        Node parent = head;
-        while(current != null){
-            parent = current;                         // update parent
-            
-            //if element is greater than current
-            // then go right else go left
-            current =  (element.compareTo(current.value) > 0) ? 
-            			current.right : 
-            			current.left;
-        }
+    //find the position where to add the node
+    Node current = head;
+    Node parent = head;
+    while(current != null){
+        parent = current;                         // update parent
         
-        // if element greater than parent
-        // then add to right else add to left;
-        if(element.compareTo(parent.value) > 0 )            
-           parent.right = nn;
-        else
-           parent.left = nn;
-        
-        length++;
-        return;
+        //if element is greater than current
+        // then go right else go left
+        current =  (element.compareTo(current.value) > 0) ? 
+        			current.right : 
+        			current.left;
+    }
+    
+    // if element greater than parent
+    // then add to right else add to left;
+    if(element.compareTo(parent.value) > 0 )            
+       parent.right = nn;
+    else
+       parent.left = nn;
+    
+    length++;
+    return;
 
    }
    
@@ -69,19 +69,27 @@ public class BinaryTree{
 	   
 	   if(current == null) return;
 	   int children = current.childrenCount();
+	   
+	   //if element has no children then delete it
 	   if(children == 0){
 		   	if(isLeft) parent.left = null;
 		   	else parent.right = null;
 	   }
+	   
+	   // if element has one child then make the child
+	   // direct descendant of the parent
 	   else if(children == 1){
 		   Node child = (current.left != null) ? current.left : current.right;
 		   if(isLeft) parent.left = child;
 		   else parent.right = child;
 	   }
+	   
+	   // if element has two children then find predecessor or successor and replace the node
+	   // with the successor. 
 	   else {
 		   //find successor - 
-		   // go one left and then select right most leaf node
-		   // or go one right and select left most leaf node
+		   // predecssor -- go one left and then select right most leaf node
+		   // successor -- or go one right and select left most leaf node
 		   Node next = current.right;
 		   while(next.left != null) next = next.left;
 		   if(isLeft) parent.left = next;
@@ -94,6 +102,8 @@ public class BinaryTree{
 	   
 	   return;	 
    }
+   
+   
    
    
    

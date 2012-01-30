@@ -7,8 +7,8 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 
-import com.data.BinaryTree;
-import com.data.BinaryTree.Node;
+import com.data.BinarySearchTree;
+import com.data.BinarySearchTree.Node;
 import com.questions.Problem;
 import com.questions.Solution;
 import com.util.Read;
@@ -32,7 +32,7 @@ public class Problem1 extends Problem{
         
 		Read read = new Read(writer, reader);
 
-		BinaryTree tree = null;
+		BinarySearchTree tree = null;
 		String treetype = read.string("Tree type (Manual/Random): ");
 		tree = ("manual".equalsIgnoreCase(treetype)) ? 
 			read.binaryTree() : 
@@ -50,7 +50,7 @@ public class Problem1 extends Problem{
 
 		@Override
 		public void execute(Map options, PrintWriter writer) {
-			BinaryTree bt = (BinaryTree) options.get("tree");
+			BinarySearchTree bt = (BinarySearchTree) options.get("tree");
 			Queue<Object> queue = new LinkedList<Object>();
 			
 			queue.add(bt.getHead());
@@ -61,7 +61,7 @@ public class Problem1 extends Problem{
 				Object current = queue.poll();
 				if(current == null){
 					writer.println();
-					writer.println("Size = " + queue.size());
+					//writer.println("Size = " + queue.size());
 					// KEY STEP: BOUNDARY CONDITION 
 					if(queue.peek() != null) queue.add(null);
 				}

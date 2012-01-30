@@ -6,7 +6,9 @@ import java.io.PrintWriter;
 import java.util.Map;
 import java.util.HashMap;
 import com.util.Read;
-import com.data.BinaryTree;
+import com.data.BinarySearchTree;
+import com.data.BinarySearchTree.Node;
+
 import java.util.Arrays;
 import com.questions.Problem;
 import com.questions.Solution;
@@ -17,10 +19,13 @@ public class Problem9 extends Problem{
 		super();
 		this.solutions.add(new Solution1());
 		this.solutions.add(new Solution2());
+		this.solutions.add(new Solution3());
 	}
 
 	public String question(){
-		return "Find the least common ancestore of two nodes in a binary tree. A least common ancestor is a node that of which both the give nodes are descendant.";
+		return "Find the least common ancestore (deepest ancestor) of two nodes in a binary tree. " +
+				"A least common ancestor is a node of which both the given nodes " +
+				"are descendant.";
 	}
 	
 	public Map readParameters(PrintWriter writer, BufferedReader reader) throws Exception{
@@ -28,7 +33,7 @@ public class Problem9 extends Problem{
 	        
 		Read read = new Read(writer, reader);
 
-		BinaryTree tree = null;
+		BinarySearchTree tree = null;
 		String treetype = read.string("Tree type (Manual/Random): ");
 		tree = ("manual".equalsIgnoreCase(treetype)) ? 
 			read.binaryTree() : 
@@ -43,22 +48,76 @@ public class Problem9 extends Problem{
 		
 		Integer v1 = read.integer("Value of first node: ");
 		Integer v2 = read.integer("Value of second node: ");
+		
+		if(v2 < v1){
+			Integer tmp = v1;
+			v1 = v2;
+			v2 = tmp;
+		}
+		
 		options.put("v1", v1);
 		options.put("v2", v2); 
 		
 		return options;
 	}
 	
-	
+	public class Solution3 implements Solution{
+
+		@Override
+		public void execute(Map options, PrintWriter out) {
+			BinarySearchTree tree = (BinarySearchTree) options.get("tree");
+			Comparable v1 = (Comparable) options.get("v1");
+			Comparable v2 = (Comparable) options.get("v2");
+			
+			//assume that v1 is always less than v2 -- readParameter is taking care of that
+			Node current = tree.getHead();
+			while(current != null){
+				Comparable value = current.value();
+				int d1 = v1.compareTo(value);
+				int d2 = v2.compareTo(value);
+
+				// if both are smaller than current, go left
+				if(d1 < 0 && d2 < 0) current = current.left();
+				// if both are bigger than go right
+				else if (d1 > 0 && d2 > 0) current = current.right();
+				// else we found deepest ancestor --hence break
+				else break;
+			}
+		
+			if(current == null) out.println("Failed to find deepest ancestor");
+			else out.println("Deepest ancestor is " + current.value());
+			
+		}
+
+		@Override
+		public String describe() {
+			return "Start from root, if root's number is between given two numbers or " +
+					"equal to one of them, return root's number, else if root less than " +
+					"both given numbers, go to root's right child, repeat " +
+					"else if root greater than both given numbers. go to root's left child, repeat";
+			
+		}
+
+		@Override
+		public String timeComplexity() {
+			return "O(log(N))";
+		}
+
+		@Override
+		public String spaceComplexity() {
+			return "O(1)";
+		}
+		
+	}
 	
 	public class Solution1 implements Solution{
-	        private BinaryTree tree = null;
+	        private BinarySearchTree tree = null;
 		private Comparable v1 = null;
 		private Comparable v2 = null;
 		
 		public void execute(Map options, PrintWriter writer){
 		    if(options == null) return;
-		    this.tree = (BinaryTree) options.get("tree");
+		    this.tree = (BinarySearchTree) options.get("tree");
 		    this.v1 = (Comparable) options.get("v1");
 		    this.v2 = (Comparable) options.get("v2");
 		    
@@ -104,7 +163,7 @@ public class Problem9 extends Problem{
 		    }
 		     
 		    
-		    if(candidates.size() == 2 || candidates.size() == 3){
+		    if(candidates.size() == 2){
 		        writer.println("Ancestor is " + inOrder[i+1]);
 		        return;
 		    } 
@@ -149,13 +208,13 @@ public class Problem9 extends Problem{
 	
 		
 	public class Solution2 implements Solution{
-	        private BinaryTree tree = null;
+	        private BinarySearchTree tree = null;
 		private Comparable v1 = null;
 		private Comparable v2 = null;
 		
 		public void execute(Map options, PrintWriter writer){
 		    if(options == null) return;
-		    this.tree = (BinaryTree) options.get("tree");
+		    this.tree = (BinarySearchTree) options.get("tree");
 		    this.v1 = (Comparable) options.get("v1");
 		    this.v2 = (Comparable) options.get("v2");
 		    
@@ -173,7 +232,7 @@ public class Problem9 extends Problem{
 		    
 		    writer.println("Objective: find least common ancestor for " + v1 + ", " + v2);
 		    
-		    BinaryTree.Node node = leastCommonAncestor(tree.getHead());
+		    BinarySearchTree.Node node = leastCommonAncestor(tree.getHead());
 		    
 		    if(node != null) writer.println("Ancestor is: " + node.value());
 		    else writer.println("Failed to find common ancestor");
@@ -182,14 +241,14 @@ public class Problem9 extends Problem{
 		    	
 		}
 		
-		private BinaryTree.Node leastCommonAncestor(BinaryTree.Node node){
+		private BinarySearchTree.Node leastCommonAncestor(BinarySearchTree.Node node){
 		   if(node == null) return null;
 		   
 		   if(v1.compareTo(node.value()) == 0) return node;
 		   if(v2.compareTo(node.value()) == 0) return node;
 		   
-		   BinaryTree.Node left = leastCommonAncestor(node.left());
-		   BinaryTree.Node right = leastCommonAncestor(node.right());
+		   BinarySearchTree.Node left = leastCommonAncestor(node.left());
+		   BinarySearchTree.Node right = leastCommonAncestor(node.right());
 		   
 		   if(left != null && right != null) return node;
 		   else if(left != null) return left;

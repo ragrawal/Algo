@@ -11,6 +11,7 @@ src>javac -d ../bin/ com/questions/linkedlist/single/*.java
 src>cd ..
 Algo>java -cp bin com.test.ProblemApplet
 
+
 Questions Remaining:
 1. Sort a link list using merge sort.
 2. Find 3rd largest element in an array 
@@ -19,6 +20,30 @@ pointer points to next node in the list and random pointer can point to any node
 Write an efficient function which takes such list and returns the copy/clone of that list.
 http://www.careercup.com/question?id=9304676
 
+Binary Search Tree Problems Remaining:
+1. Deletion of a node 
+2. Morris Traversal
+3. Convert BST to Circular Double Linked List
+4. Find biggest number that is smaller than the given number
+5. find second most biggest number
+6. Find the maximum depth of the BST
+7. Given a binary search tree, design an algorithm which creates  a linked list of all the nodes at each depth.
+(eg. if you have a tree with depth D, you will have D linked list)
+8. Given a binary Search tree and a Node, How would you transform the tree to make that Node as root.The resulting tree should be a BST.
+9. Given a value and a binary search tree. Print all the paths(if there exists more than one) 
+which sum up to that value. It can be any path in the tree. 
+It doesn't have to be from the root.
+
+BST Hints:
+  * Depth of Tree = Log(N)/Log(2)  = log(N, base=2)
+  * Number of Leaf Nodes = 2^(Height) = 2^(log(N, base=2))
+  
+Key Algorithms:
+1. Morris Traversal for Binary Search Trees
+2. Subset Sum Problem 
+3. Sorting Algorithms: Merge sort, Quick Sort, Radix Sort, Bubble Sort, ...
+4.  
+
 
 
 Data Structures Complexity: 
@@ -26,7 +51,10 @@ Benefit of linkedlist over array:
   * you don't need continuous space
   * you don't need to predefined space
   * efficiently utlization of space because you don't block any more space than currently required. 
-  
+
+Disadvantages of linkedlist
+  * insertion takes order of N time
+  * Difficult to maintain and recover 
   
 Benefits/Issues of single linked list and double linked list -- think of applications ?
   

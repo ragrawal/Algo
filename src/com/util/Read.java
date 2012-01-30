@@ -6,7 +6,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
-import com.data.BinaryTree;
+import com.data.BinarySearchTree;
 import com.data.SingleLinkedList;
 
 public class Read{
@@ -98,19 +98,19 @@ public class Read{
     	return elements;
     }
     
-    public BinaryTree randomBinaryTree() throws Exception{
+    public BinarySearchTree randomBinaryTree() throws Exception{
         writer.print("Enter total number of nodes: "); writer.flush();
         
         int length = new Integer(reader.readLine()).intValue(); 
         Random random = new Random();
-        BinaryTree tree = new BinaryTree();
+        BinarySearchTree tree = new BinarySearchTree();
         for(int i =0; i< length; i++)
         	tree.add(new Integer(random.nextInt(length * 10)));
         return tree;
     }
     
-    public BinaryTree binaryTree() throws Exception{
-        BinaryTree tree = new BinaryTree();
+    public BinarySearchTree binaryTree() throws Exception{
+        BinarySearchTree tree = new BinarySearchTree();
         while(true){
            writer.print("Enter node value (enter q if done): "); writer.flush();
            String value = reader.readLine();

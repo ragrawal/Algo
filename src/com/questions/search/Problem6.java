@@ -20,7 +20,9 @@ public class Problem6 extends Problem{
 	}
 
 	public String question(){
-	    return "Write a function to find a given number in a 2 dimensional matrix where each row and column are sorted. (source: http://inder-gnu.blogspot.com/2008/01/find-element-in-row-and-column-sorted.html)";
+	    return "Write a function to find a given number in a 2 dimensional matrix where each " +
+	    		"row and column are sorted. (source: " +
+	    		"http://inder-gnu.blogspot.com/2008/01/find-element-in-row-and-column-sorted.html)";
 	}
 	
 	public Map readParameters(PrintWriter writer, BufferedReader reader) throws Exception{
