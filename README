@@ -1,6 +1,12 @@
 #======================================
 ALGO - Java Data Structures and Algorithms
 #======================================
+
+Requirements:
+1. Java 1.6
+
+
+
 This project provides solution to various java programming interview questions. There is an interactive applet (com.test.ProblemApplet ) that shows all the questions. Select one of the question in the applet to run it. In order to compile and run the project, use the following commands:
 
 Algo>cd src
@@ -9,44 +15,94 @@ src>javac -d ../bin/ com/questions/*/*.java
 src>javac -d ../bin/ com/questions/tree/bst/*.java
 src>javac -d ../bin/ com/questions/linkedlist/single/*.java
 src>cd ..
+Algo>cp -R META-INF bin/
 Algo>java -cp bin com.test.ProblemApplet
 
 
-Questions Remaining:
+Questions Remaining
 1. Sort a link list using merge sort.
 2. Find 3rd largest element in an array 
 3. There is a linked list whose node has 3 fields, val, next pointer & random pointer...next 
 pointer points to next node in the list and random pointer can point to any node in the list.
 Write an efficient function which takes such list and returns the copy/clone of that list.
 http://www.careercup.com/question?id=9304676
-
-Binary Search Tree Problems Remaining:
-1. Deletion of a node 
-2. Morris Traversal
-3. Convert BST to Circular Double Linked List
-4. Find biggest number that is smaller than the given number
-5. find second most biggest number
-6. Find the maximum depth of the BST
-7. Given a binary search tree, design an algorithm which creates  a linked list of all the nodes at each depth.
+4. Find 2nd largest element in a binary search tree
+5. For a given BST, create a different linked list for each level
+6. Deletion of a node 
+7. Morris Traversal
+8. Convert BST to Circular Double Linked List
+9. Find biggest number that is smaller than the given number
+10. find second most biggest number
+11. Find the maximum depth of the BST
+12. Given a binary search tree, design an algorithm which creates  a linked list of all the nodes at each depth.
 (eg. if you have a tree with depth D, you will have D linked list)
-8. Given a binary Search tree and a Node, How would you transform the tree to make that Node as root.The resulting tree should be a BST.
-9. Given a value and a binary search tree. Print all the paths(if there exists more than one) 
-which sum up to that value. It can be any path in the tree. 
-It doesn't have to be from the root.
+13. Given a binary Search tree and a Node, How would you transform the tree to make that Node as root.The resulting tree should be a BST.
+14. Given a value and a binary search tree. Print all the paths(if there exists more than one) 
+which sum up to that value. It can be any path in the tree. It doesn't have to be from the root (NP-Hard Problem) 
+16. Design an algorithm to find path from one node in a binary tree to another
+Source: http://courses.csail.mit.edu/iap/interview/Hacking_a_Google_Interview_Handout_3.pdf
+17 Explain Different types of binary tree traversal
+   * Depth-First
+   ** Inorder -- Left, Node, Rith -- sorting
+   ** Preorder -- Node, Left, Right -- Copy BST, Prefix expression
+   ** Postorder -- Left, Right, Node -- Postfix
+   * Level-Order/Breadth First
+18. Get the mirror of binary tree (swap roles of left and right)
+http://k2code.blogspot.com/2011/05/interview-questions-on-binary-search.html
+
+
+Red-Black Trees:
+* Insertion Rules:
+   1. Every node is either red or black 
+   2. The root is always black
+   3. If a node is red, its children must be black. Although the converse it not necessarily true
+   4. Every path from the root to leaf or null node must have same number of black nodes. 
+
 
 BST Hints:
   * Depth of Tree = Log(N)/Log(2)  = log(N, base=2)
   * Number of Leaf Nodes = 2^(Height) = 2^(log(N, base=2))
+  * Inorder -- Left, Node, Right
+  * PreOrder -- Node, Left, Right
+  * PostOrder -- Left, Right, Node
+  
   
 Key Algorithms:
-1. Morris Traversal for Binary Search Trees
+1. Morris Traversal for Binary Search Trees: Convert binary search tree to circular double linked list in place
 2. Subset Sum Problem 
 3. Sorting Algorithms: Merge sort, Quick Sort, Radix Sort, Bubble Sort, ...
-4.  
+4. Fi
 
 
+FAQ:
 
-Data Structures Complexity: 
+* Explain fail-safe
+	Fail-safe doesn't raises ConcurrentModificationException. Read more about Fail Safe/Fail Fast here: 
+	http://www.jguru.com/faq/view.jsp?EID=221988
+
+* Difference between HashMap and HashTable 
+    * Hashtable is synchronized and hence has slower performance
+    * Hashtable iteratore is not fail-safe
+    * Hashtable doens't allow null for key and value
+	
+	* HashMap are not synchronized and therefore has better performance
+	* Hashmap iteratores is fail-safe
+	* Hashmap allows null for both key and values
+	
+	* HashSet does not allow duplicate values
+	* HashSet only takes key - it has add 
+	
+* Vectors versus ArrayList
+	* Vector is synchronized. ArrayList is not
+	* Iterators for both are fail-safe. Enumeration returned by vector are not
+
+* Difference between Iterators and Enumerations
+	* Enumeration is old. Iterators are new.
+	* Enumeration are read only. Iterators has remove() method.
+	* Iterators allow removing element will iterating. Enumerations don't. Enumeration acts as Read-only interface, because 
+	it has the methods only to traverse and fetch the objects, where as by using Iterator we can manipulate the objects like adding and removing the objects from collection e.g. Arraylist.
+	* Also Iterator is more secure and safe as compared to Enumeration because it  does not allow other thread to modify the collection object while some thread is iterating over it and throws
+
 Benefit of linkedlist over array:
   * you don't need continuous space
   * you don't need to predefined space
@@ -58,5 +114,10 @@ Disadvantages of linkedlist
   
 Benefits/Issues of single linked list and double linked list -- think of applications ?
   
+
+
+Resources:
+http://www.java-questions.com/collections_interview_questions.html
+http://www.careercup.com/page?pid=hash-table-interview-questions
 
 
