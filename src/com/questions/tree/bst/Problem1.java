@@ -14,7 +14,7 @@ import com.questions.Solution;
 import com.util.Read;
 
 
-public class Problem1 extends Problem{
+public class Problem1 extends TreeProblem{
 
 	public Problem1(){
 		super();
@@ -26,25 +26,6 @@ public class Problem1 extends Problem{
 				"line.";
 	}
 
-	@Override
-	public Map readParameters(PrintWriter writer, BufferedReader reader) throws Exception {
-		Map<String, Object> options = new HashMap<String, Object>();
-        
-		Read read = new Read(writer, reader);
-
-		BinarySearchTree tree = null;
-		String treetype = read.string("Tree type (Manual/Random): ");
-		tree = ("manual".equalsIgnoreCase(treetype)) ? 
-			read.binaryTree() : 
-			read.randomBinaryTree();
-			
-		writer.println("========== GENERATE TREE ==============");
-		tree.print(writer);
-		writer.println("========== END OF TREE ==============");
-		options.put("tree", tree);
-		
-		return options;
-	}
 	
 	public class Solution1 implements Solution{
 

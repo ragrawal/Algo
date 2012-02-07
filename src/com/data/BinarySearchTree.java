@@ -45,6 +45,17 @@ public class BinarySearchTree{
 
    }
    
+   public BinarySearchTree copy(){
+	   BinarySearchTree cp = new BinarySearchTree();
+	   cp.head = copy(head);
+	   return cp;
+   }
+   
+   private Node copy(Node current){
+	   if(current == null) return null;
+	   return new Node(current.value, copy(current.left), copy(current.right));
+   }
+   
    public void delete(Comparable element){
 	   //elemement can be
 	   // 1. leaf node 
@@ -109,6 +120,7 @@ public class BinarySearchTree{
    
    public Node getRoot(){ return getHead(); }
    public Node getHead(){ return head; }
+   public void setHead(Node head){this.head = head; }
    
    //pre-order traversal
    public Comparable[] preOrderUsingLoop(){
@@ -219,21 +231,28 @@ public class BinarySearchTree{
    	public Node(Comparable element){ 
    	   value = element;
    	}
+   	
    	public Node(Comparable element, Node left, Node right){
-   	    value = element;
-   	    left = left;
-   	    right = right;
+   	    this.value = element;
+   	    this.left = left;
+   	    this.right = right;
    	}
    	
    	public Comparable value(){ return value; }
+   	
    	public Node left(){ return left; }
+   	public void setLeft(Node left){ this.left = left; }
+   	
    	public Node right(){ return right; }
+   	public void setRight(Node right){ this.right = right; }
+   	
    	public int childrenCount(){
    		int counter = 0;
    		if(left != null) counter++;
    		if(right != null) counter++;
    		return counter;
    	}
+   	
    	
    }
    

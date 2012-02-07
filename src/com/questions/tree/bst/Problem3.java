@@ -12,9 +12,10 @@ import com.questions.Problem;
 import com.questions.Solution;
 import com.util.Read;
 
-public class Problem3 extends Problem{
+public class Problem3 extends TreeProblem{
 
 	public Problem3(){
+		super();
 		this.solutions.add(new Solution1());
 	}
 	
@@ -23,17 +24,6 @@ public class Problem3 extends Problem{
 		return "Find maximum depth of the binary search tree";
 	}
 
-	@Override
-	public Map readParameters(PrintWriter writer, BufferedReader reader)
-			throws Exception {
-		Read read = new Read(writer, reader);
-		BinarySearchTree tree = read.randomBinaryTree();
-		writer.println("Tree: ");
-		tree.print(writer);
-		Map<String, Object> options = new HashMap<String, Object>();
-		options.put("tree", tree);
-		return options;
-	}
 	
 	public class Solution1 implements Solution{
 

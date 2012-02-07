@@ -12,25 +12,26 @@ import com.questions.Problem;
 import com.questions.Solution;
 import com.util.Read;
 
-public class Problem4 extends Problem{
+public class Problem4 extends TreeProblem{
+	
+	public Problem4(){
+		super();
+		this.solutions.add(new Solution1());
+	}
 
 	@Override
 	public String question() {
 		return "Verify whether the given tree is a binary search tree";
 	}
 
-	@Override
 	public Map readParameters(PrintWriter writer, BufferedReader reader)
 			throws Exception {
+		Map<String, BinarySearchTree> options = new HashMap<String, BinarySearchTree>();
 		Read read = new Read(writer, reader);
-		BinarySearchTree tree = read.binaryTree();
-		writer.println("Tree: ");
-		tree.print(writer);
-		Map<String, Object> options = new HashMap<String, Object>();
-		options.put("tree", tree);
+		BinarySearchTree tree = read.randomBinaryTree();
+		
 		return options;
 	}
-	
 	
 	public class Solution1 implements Solution{
 

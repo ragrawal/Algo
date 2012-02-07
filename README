@@ -47,8 +47,7 @@ Source: http://courses.csail.mit.edu/iap/interview/Hacking_a_Google_Interview_Ha
    ** Preorder -- Node, Left, Right -- Copy BST, Prefix expression
    ** Postorder -- Left, Right, Node -- Postfix
    * Level-Order/Breadth First
-18. Get the mirror of binary tree (swap roles of left and right)
-http://k2code.blogspot.com/2011/05/interview-questions-on-binary-search.html
+
 
 
 Red-Black Trees:
@@ -95,13 +94,21 @@ FAQ:
 * Vectors versus ArrayList
 	* Vector is synchronized. ArrayList is not
 	* Iterators for both are fail-safe. Enumeration returned by vector are not
+	* Data growth - Internally, both the ArrayList and Vector hold onto their 
+	contents using an Array. When an element is inserted into an ArrayList or a Vector, 
+	the object will need to expand its internal array if it runs out of room. A Vector 
+	defaults to doubling the size of its array, while the ArrayList increases its array 
+	size by 50 percent.  
 
 * Difference between Iterators and Enumerations
 	* Enumeration is old. Iterators are new.
 	* Enumeration are read only. Iterators has remove() method.
-	* Iterators allow removing element will iterating. Enumerations don't. Enumeration acts as Read-only interface, because 
-	it has the methods only to traverse and fetch the objects, where as by using Iterator we can manipulate the objects like adding and removing the objects from collection e.g. Arraylist.
-	* Also Iterator is more secure and safe as compared to Enumeration because it  does not allow other thread to modify the collection object while some thread is iterating over it and throws
+	* Iterators allow removing element will iterating. Enumerations don't. Enumeration acts as 
+	Read-only interface, because 
+	it has the methods only to traverse and fetch the objects, where as by using Iterator we can 
+	manipulate the objects like adding and removing the objects from collection e.g. Arraylist.
+	* Also Iterator is more secure and safe as compared to Enumeration because it  does not allow other thread 
+	to modify the collection object while some thread is iterating over it and throws
 
 Benefit of linkedlist over array:
   * you don't need continuous space
@@ -114,6 +121,13 @@ Disadvantages of linkedlist
   
 Benefits/Issues of single linked list and double linked list -- think of applications ?
   
+Properties of Red-Black Nodes:
+* Root node is always black
+* Red node will always have black children
+* Black height/Depth of all paths is same
+
+Height of red-black tree is in between: log_4(n) < h < 1 + log_2(n)
+ 
 
 
 Resources:
