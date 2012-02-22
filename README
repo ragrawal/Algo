@@ -64,6 +64,12 @@ BST Hints:
   * Inorder -- Left, Node, Right
   * PreOrder -- Node, Left, Right
   * PostOrder -- Left, Right, Node
+  * Number of nodes = 2^(height+1) - 1
+Representing Tree as Array
+	** Left Child: 2*Index +1
+	** Right Child: 2*Index + 2
+	** Parent = (index-1)/2
+	** 
   
   
 Key Algorithms:
@@ -81,7 +87,7 @@ FAQ:
 
 * Difference between HashMap and HashTable 
     * Hashtable is synchronized and hence has slower performance
-    * Hashtable iteratore is not fail-safe
+    * Hashtable iterator is not fail-safe
     * Hashtable doens't allow null for key and value
 	
 	* HashMap are not synchronized and therefore has better performance
@@ -90,6 +96,7 @@ FAQ:
 	
 	* HashSet does not allow duplicate values
 	* HashSet only takes key - it has add 
+	
 	
 * Vectors versus ArrayList
 	* Vector is synchronized. ArrayList is not
@@ -113,12 +120,56 @@ FAQ:
 Benefit of linkedlist over array:
   * you don't need continuous space
   * you don't need to predefined space
-  * efficiently utlization of space because you don't block any more space than currently required. 
+  * efficiently utilization of space because you don't block any more space than currently required. 
 
-Disadvantages of linkedlist
+Disadvantages of linked list
   * insertion takes order of N time
   * Difficult to maintain and recover 
-  
+
+HashTable
+	* Usually uses array to store elements
+	* usually made twice the initial size when full. Array size should be prime number and hence the new array size will be more than double. 
+	* VERY IMPORTANT: table size should be prime number for open addressing 
+	
+Hashing Algorithm for Strings:
+	* Approach 1:
+	     Example: CATS
+	     Approach 1: 3*27^0 + 1*27^0 + 20*27^1 + 19*27^0
+			-- can't handle strings > 7
+	     Approach 2 (Horner's Method): (((3*27+1)*27 + 20)*27 + 19)*27 
+			-- can't handle strings > 7
+	     Approach 3 
+				((((3 % arraysize)*27 + 1) % arraysize)*27 + 20) % arraysize)*27 + 19
+				
+				--can be made faster using 32 base and then using bitwise operations for mod
+				
+	   
+11 % 32 ==> 00001011 & 00011111 = 00001011
+33 % 32 ==> 000100001 & 00011111 = 00000001
+  	
+
+Ways to handle Collisions in HashTable
+	* Open Addressing: Collisions are resolved by looking for an open cell in the hash table. Generally load factor needs to be less than 1 (preferred is about 0.5 to 0.7)
+		** Linear Probe
+		** Quadratic Probe
+		** Double Hashing
+	* Separate Chaining: Each index is a linkedlist. Collisions are resolved by adding by simply adding the element to the linked list. Load factor can be 1 or more. Because of this, separate chaining is often preferred over open addressing. Table size doesn't need to be prime number. 
+	
+Advantages and Issues of HashTable
+
+	* Issues
+		** Based on arrays and hence need a good estimate of size beforehand
+		** No easy way to scan the data in certain order
+		** Work best when they are no more than 1/2 or 2/3 fill
+	* Advantages
+		** constant time lookup
+		
+Properties of HashFunction
+	* Quick Computation
+	* Random Keys
+	* Non-Random Keys
+	
+	
 Benefits/Issues of single linked list and double linked list -- think of applications ?
   
 Properties of Red-Black Nodes:
@@ -128,6 +179,19 @@ Properties of Red-Black Nodes:
 
 Height of red-black tree is in between: log_4(n) < h < 1 + log_2(n)
  
+================== HEAP ===========================
+* is a kind of tree for both insertion and deletion in O(logN) time
+* Use for prioritizing items
+* It's a binary tree with these characteristics:
+	** Its complete
+	** usually implemented as an array
+	** Every node's key is larger than or equal to the keys of its children
+
+2^0=1-1 = 0
+2^1=2-1 = 1
+2^2=4-1 = 3
+2^3=8-1 = 7
+
 
 
 Resources:

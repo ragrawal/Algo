@@ -202,22 +202,7 @@ public class BinarySearchTree{
      }
    }
    
-   public void print(){
-	   print(head, 0, new PrintWriter(System.out, true));
-   }
-   public void print(PrintWriter writer){
-   	print(head, 0, writer);	
-   }
-   
-   private void print(Node node, int level, PrintWriter writer)
-   {
-   	if(node == null) return;
-	for(int i=0; i < 2*(level-1); i++) writer.print(" ");
-	if(level > 0) writer.print("|-");
-	writer.println(node.value); 
-	print(node.left, level+1, writer);
-	print(node.right, level+1, writer);
-   }
+
    
    
    
