@@ -222,8 +222,20 @@ public class BinaryTree {
 		tree.leftRotate(nodes[1]);
 		tree.print();
 		System.out.println("RIGHT Rotate about " + nodes[1]);
-		tree.rightRotatate(nodes[1]);
+		tree.rightRotatate(nodes[4]);
 		tree.print();
+		System.out.println("PreOrder");
+		for(BinaryNode node: tree.traverse("preOrder"))
+			System.out.print(node  + " --> ");
+		System.out.println("InOrder");
+		for(BinaryNode node: tree.traverse("inorder"))
+			System.out.print(node  + " --> ");
+		System.out.println("PostOrder");
+		for(BinaryNode node: tree.traverse("postOrder"))
+			System.out.print(node  + " --> ");
+		
+		
+		
 
 
 		
