@@ -4,10 +4,10 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Stack;
 
-import com.data.BinarySearchTree.Node;
+
 
 public class BinaryTree {
-	BinaryNode root;
+	protected BinaryNode root;
 	
 	//CONSTRUCTOR
 	public BinaryTree(){}
@@ -50,19 +50,20 @@ public class BinaryTree {
 		//    1: Parent can be null, 
 		//    2. also take care of left or right child
 		BinaryNode parent = y.parent;
-		x.parent = parent;
 		if (parent == null){
 			this.root = x;   /* KEY CONDITION - ALWAYS FORGET */
 		}
-		else if (parent.left.key.compareTo(y.key) == 0) 
-			parent.left = x;
+		else if (parent.left.key.compareTo(y.key) == 0)
+			//Note: BinaryNode implementation takes care of setting x.parent = parent
+			parent.setLeft(x);  
 		else 
-			parent.right = x; 
-		//Take care of B
-		if((y.left = x.right) != null) x.right.parent = y;
-		x.right = y;
-		y.parent = x;
+			//Note: BinaryNode implementation takes care of setting x.parent = parent
+			parent.setRight(x); 
 		
+		//Take care of B
+		y.setLeft(x.right);
+		x.setRight(y); //BinaryNode takes care of setting y.parent = x
+
 	}
 	
 	public void leftRotate(BinaryNode x){
@@ -88,6 +89,26 @@ public class BinaryTree {
 		x.parent = y;
 				
 	}
+
+	//****************************************************
+	//  UTILITY FUNCTIONS
+	//****************************************************	
+	public BinaryTree copy(){
+		return new BinaryTree(copy(this.root));
+	}
+	
+	protected BinaryNode copy(BinaryNode node){
+		if (node == null) return null;
+		BinaryNode duplicate = new BinaryNode(node.key, node.value);
+		duplicate.left = copy(node.left);
+		duplicate.right = copy(node.right);
+		return duplicate;
+	}
+	
+	public boolean empty(){
+		return (this.root == null);
+	}
+	
 	
 	//****************************************************
 	//  TREE DISPLAY ALGORITHMS
@@ -139,20 +160,13 @@ public class BinaryTree {
 		
 	}
 	
+
 	protected void levelOrder(BinaryNode node, ArrayList<BinaryNode> store){
 		if(node == null) return;
 		store.add(node);
 		levelOrder(node.left, store);
 		levelOrder(node.right, store);		
 	}
-	
-	protected void inOrder(BinaryNode node, ArrayList<BinaryNode> store){
-		if(node == null) return;
-		inOrder(node.left, store);
-		store.add(node);
-		inOrder(node.right, store);
-	}
-	
 	
 	protected void preOrder(ArrayList<BinaryNode> store){
 		Stack<BinaryNode> stack = new Stack<BinaryNode>();
@@ -171,6 +185,78 @@ public class BinaryTree {
 		preOrder(node.left, store);
 		preOrder(node.right, store);
 	}
+	
+	
+	
+	// InOrder Traversal using Recursion
+	protected void inOrder(BinaryNode node, ArrayList<BinaryNode> store){
+		if(node == null) return;
+		inOrder(node.left, store);
+		store.add(node);
+		inOrder(node.right, store);
+	}
+	
+	//InOrder Traversal without recursion
+	public void inOrder(ArrayList<BinaryNode> store){
+		if(this.root == null) return;
+		Stack<BinaryNode> stack = new Stack<BinaryNode>();
+		stack.add(this.root);
+		BinaryNode current = this.root.left;
+		boolean done = false;
+		while(!done){
+			if(current != null){
+				stack.add(current);
+				current = current.left;
+			}
+			else{
+				if(!stack.empty()){
+					current = stack.pop();
+					store.add(current);
+					current = current.right;
+				}else{
+					done = true;
+				}
+			}
+		}
+
+	}
+	
+	//Morris Traversal InOrder Traversal without recursion and without stack
+	protected void morrisTraversal(ArrayList<BinaryNode> store){
+		BinaryNode current, pre;
+		current = this.root;
+		while(current != null){
+			if(current.left == null){
+				store.add(current);
+				current = current.right;
+			}
+			else{
+				// find inorder predecessor of current node 
+				// For predecessor - find rightmost node of the left subtree 
+				pre = current.left;
+				while(pre.right != null && pre.right != current){
+					pre = pre.right;
+				}
+				
+				//Make current as right child of its inorder predecessor 
+				if(pre.right == null){
+					pre.right = current;
+					current = current.left;
+				}
+				
+				//Revert the changes made in if part to restore 
+				//the original tree
+				else{
+					pre.right = null;
+					store.add(current);
+					current = current.right;
+				}
+			}
+		}
+	}
+	
+	
+
 	
 	/* postorder traversal without using loop -- space efficient */
 	protected void postOrder(ArrayList<BinaryNode> store){
@@ -224,24 +310,37 @@ public class BinaryTree {
 		System.out.println("RIGHT Rotate about " + nodes[1]);
 		tree.rightRotatate(nodes[4]);
 		tree.print();
+		
+		
 		System.out.println("PreOrder");
 		for(BinaryNode node: tree.traverse("preOrder"))
 			System.out.print(node  + " --> ");
+		System.out.println("\n");
+		
 		System.out.println("InOrder");
+		System.out.println("...using recursion");
 		for(BinaryNode node: tree.traverse("inorder"))
 			System.out.print(node  + " --> ");
+		System.out.println("\n");
+		
+		System.out.println("...using stack");
+		ArrayList<BinaryNode> store = new ArrayList<BinaryNode>();
+		tree.inOrder(store);
+		for(BinaryNode node: store)
+			System.out.print(node  + " --> ");
+		System.out.println("\n");
+
+		System.out.println("...using morris traversal");
+		store = new ArrayList<BinaryNode>();
+		tree.morrisTraversal(store);
+		for(BinaryNode node: store)
+			System.out.print(node  + " --> ");
+		System.out.println("\n");
+		
 		System.out.println("PostOrder");
 		for(BinaryNode node: tree.traverse("postOrder"))
 			System.out.print(node  + " --> ");
 		
-		
-		
-
-
-		
-		
-		
-	
 		
 	}
 }

@@ -6,48 +6,38 @@ import java.util.Queue;
 import java.util.LinkedList;
 import java.util.Stack;
 
-public class BinarySearchTree{
-   private Node head;
-   private int length = 0 ;
+public class BinarySearchTree extends BinaryTree {
    
-   public void add(Comparable element)
-   {
-   	// if head is null, add to head
-   	Node nn = new Node(element);
-   	if(head == null){
-   	    head = nn;
-   	    length++;
-   	    return;
-    }
-        
-    //find the position where to add the node
-    Node current = head;
-    Node parent = head;
-    while(current != null){
-        parent = current;                         // update parent
-        
-        //if element is greater than current
-        // then go right else go left
-        current =  (element.compareTo(current.value) > 0) ? 
-        			current.right : 
-        			current.left;
-    }
-    
-    // if element greater than parent
-    // then add to right else add to left;
-    if(element.compareTo(parent.value) > 0 )            
-       parent.right = nn;
-    else
-       parent.left = nn;
-    
-    length++;
-    return;
-
-   }
+   
+  public void add(BinaryNode node){
+	  //Sanity Check
+	  if(node == null) return;
+	  //Check root
+	  if(root == null){
+		  this.root = node;
+		  return;
+	  }
+	  //Traver and add to right place
+	  Comparable insertKey = node.getKey();
+	  BinaryNode current = this.root;
+	  BinaryNode parent = null;
+	  while(current != null){
+		  parent = current;
+		  current = (insertKey.compareTo(current.getKey()) >= 0) 
+				  		? current.right
+				  		: current.left;
+	  }
+	  
+	  if (insertKey.compareTo(parent.key) >= 0) parent.setRight(node);
+	  else parent.setLeft(node);	  
+  }
+	
+	
+  
    
    public BinarySearchTree copy(){
 	   BinarySearchTree cp = new BinarySearchTree();
-	   cp.head = copy(head);
+	   cp.root = copy(root);
 	   return cp;
    }
    
@@ -62,7 +52,7 @@ public class BinarySearchTree{
 	   // 2. node with a single child
 	   // 3. node with two child
 	   
-	   Node current = head;
+	   Node current = root;
 	   Node parent = null;
 	   boolean isLeft = false;
 	   
@@ -117,129 +107,7 @@ public class BinarySearchTree{
    
    
    
-   
-   public Node getRoot(){ return getHead(); }
-   public Node getHead(){ return head; }
-   public void setHead(Node head){this.head = head; }
-   
-   //pre-order traversal
-   public Comparable[] preOrderUsingLoop(){
-      Stack<Node> stack = new Stack<Node>();
-      stack.push(head);
-      Comparable[] elements = new Comparable[length];
-      int counter = 0;
-      while(!stack.isEmpty()){
-          Node current = stack.pop();
-          if(current == null) continue;
-          elements[counter++] = current.value;
-          stack.push(current.right);
-          stack.push(current.left);
-      }
-      
-      return elements;
-   }
-   
-   public Comparable[] preOrder(){ return traverse("preOrder"); }
-   public Comparable[] inOrder() { return traverse("inorder"); }
-   public Comparable[] postOrder() { return traverse("postorder"); }
-   public Comparable[] levelOrder() { return traverse("levelorder"); }
-   
-   protected Comparable[] traverse(final String type){
-   	ArrayList<Comparable> store = new ArrayList<Comparable>();
-   	if("preorder".equalsIgnoreCase(type))
-   	    preOrder(head, store);
-   	else if("inorder".equalsIgnoreCase(type))
-   	    inOrder(head, store);
-   	else if("postorder".equalsIgnoreCase(type))
-   	    postOrder(head, store);
-   	else if("levelOrder".equalsIgnoreCase(type))
-   	    levelOrder(head, store);
-   	else
-   	    preOrder(head, store);
-   	
-   	int size = store.size();
-   	Comparable[] elements = new Comparable[size];
-   	for(int i=0; i< size; i++)
-   		elements[i] = store.get(i);
-   	return elements;
-   }
-   
-   private void preOrder(Node node, ArrayList<Comparable> store){
-   	if(node == null) return;
-   	store.add(node.value);
-   	preOrder(node.left, store);
-   	preOrder(node.right, store);
-   }
-   
-   // In order returns sorted tree
-   private void inOrder(Node node, ArrayList<Comparable> store){
-   	if(node == null) return;
-   	inOrder(node.left, store);
-   	store.add(node.value);
-   	inOrder(node.right, store);
-   	return;
-   }
-   
-   //Post Order
-   private void postOrder(Node node, ArrayList<Comparable> store){
-   	if(node == null) return;
-   	postOrder(node.left, store);
-   	postOrder(node.right, store);
-   	store.add(node.value);
-   	return;
-   }
-   
-   // breadth first traverse -- level order
-   private void levelOrder(Node node, ArrayList<Comparable> store){
-     Queue<Node> queue = new LinkedList<Node>();
-     queue.offer(node);
-     while(!queue.isEmpty()){
-         Node current = queue.poll();
-         if(current == null) continue;
-         store.add(current.value);
-         queue.offer(current.left);
-         queue.offer(current.right);
-     }
-   }
-   
 
-   
-   
-   
-   /* Inner Data Structure */
-   public class Node{
-   	protected Node left;
-   	protected Node right;
-   	protected Comparable value;
-   	
-   	public Node(){}
-   	public Node(Comparable element){ 
-   	   value = element;
-   	}
-   	
-   	public Node(Comparable element, Node left, Node right){
-   	    this.value = element;
-   	    this.left = left;
-   	    this.right = right;
-   	}
-   	
-   	public Comparable value(){ return value; }
-   	
-   	public Node left(){ return left; }
-   	public void setLeft(Node left){ this.left = left; }
-   	
-   	public Node right(){ return right; }
-   	public void setRight(Node right){ this.right = right; }
-   	
-   	public int childrenCount(){
-   		int counter = 0;
-   		if(left != null) counter++;
-   		if(right != null) counter++;
-   		return counter;
-   	}
-   	
-   	
-   }
-   
+      
 
 }

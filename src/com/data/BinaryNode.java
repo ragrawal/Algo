@@ -1,11 +1,11 @@
 package com.data;
 
 public class BinaryNode {
-	BinaryNode left;
-	BinaryNode right;
-	BinaryNode parent;
-	Comparable key;
-	Object value;
+	protected BinaryNode left;
+	protected BinaryNode right;
+	protected BinaryNode parent;
+	protected Comparable key;
+	protected Object value;
 	
 	//**********************************
 	// CONSTRUCTOR 
@@ -25,6 +25,21 @@ public class BinaryNode {
 		setRight(right);
 	}
 	
+	
+	//**********************************
+	// GETTER AND SETTERS
+	//**********************************
+	public Comparable getKey(){
+		return this.key;
+	}
+	
+	public Object getValue(){
+		return this.value;
+	}
+	
+	public void setValue(Object value){
+		this.value = value;
+	}
 	
 	public void setLeft(BinaryNode left){
 		//remove parent pointer of any existing child from point
@@ -46,6 +61,10 @@ public class BinaryNode {
 		if(this.right != null) this.right.parent = this;
 	}
 	
+	
+	//**********************************
+	// UTILITY METHODS
+	//**********************************
 	public String toString(){
 		return key.toString() + ":" + value.toString();
 	}
