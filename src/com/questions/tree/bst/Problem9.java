@@ -6,8 +6,8 @@ import java.io.PrintWriter;
 import java.util.Map;
 import java.util.HashMap;
 import com.util.Read;
-import com.data.BinarySearchTree;
-import com.data.BinarySearchTree.Node;
+import com.data.tree.binary.BinarySearchTree;
+import com.data.tree.binary.BinarySearchTree.Node;
 
 import java.util.Arrays;
 import com.questions.Problem;

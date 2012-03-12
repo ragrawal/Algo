@@ -2,7 +2,8 @@ package com.algo.sort;
 
 /*
 SelectionSort
-Selection sort improves on the bubble sort by reducing the number of swaps necessary from O(N^2) to O(N). However, the number of comparisons remains O(N^2).
+Selection sort improves on the bubble sort by reducing the number of swaps necessary 
+from O(N^2) to O(N). However, the number of comparisons remains O(N^2).
 */
 public class SelectionSort extends AbstractSort{
 	public String name(){

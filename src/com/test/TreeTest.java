@@ -1,6 +1,8 @@
 package com.test;
 
 import com.data.*;
+import com.data.tree.binary.BinarySearchTree;
+
 import java.util.Random;
 import java.util.Arrays;
 

@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 
-import com.data.BinarySearchTree;
-import com.data.BinarySearchTree.Node;
+import com.data.tree.binary.BinaryNode;
+import com.data.tree.binary.BinarySearchTree;
 import com.questions.Problem;
 import com.questions.Solution;
 import com.util.Read;
@@ -30,13 +30,13 @@ public class Problem3 extends TreeProblem{
 		@Override
 		public void execute(Map options, PrintWriter out) {
 			BinarySearchTree tree = (BinarySearchTree) options.get("tree");
-			out.println("Max depth is = " + depth(tree.getHead()));			
+			out.println("Max depth is = " + depth(tree.getRoot()));			
 		}
 		
-		private int depth(Node node){
+		private int depth(BinaryNode node){
 			if(node == null) return 0;
-			int leftDepth = depth(node.left());
-			int rightDepth = depth(node.right());
+			int leftDepth = depth(node.getLeft());
+			int rightDepth = depth(node.getRight());
 			return 1 + ((leftDepth > rightDepth) ? leftDepth : rightDepth);	
 		}
 
@@ -65,10 +65,10 @@ public class Problem3 extends TreeProblem{
 		
 		}
 		
-		private int depth(Node node){
+		private int depth(BinaryNode node){
 			if(node == null) return 0;
-			int leftDepth = depth(node.left());
-			int rightDepth = depth(node.right());
+			int leftDepth = depth(node.getLeft());
+			int rightDepth = depth(node.getRight());
 			return 1 + ((leftDepth > rightDepth) ? leftDepth : rightDepth);	
 		}
 

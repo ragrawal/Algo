@@ -20,11 +20,21 @@ public class InsertionSort extends AbstractSort{
 		for(int invariant=1; invariant <  length; invariant++){
 			Comparable value = elements[invariant];
 			int pointer = invariant-1;
-			for(; pointer >= 0 && elements[pointer].compareTo(value) > 0; pointer--)
-					swap(pointer, pointer+1);
+			for(; pointer >= 0 && elements[pointer].compareTo(value) > 0; pointer--){
+				System.out.println(invariant + ", " + pointer + ", yes");
+				swap(pointer, pointer+1);
+			}
 			elements[pointer+1] = value;
 		}
 		
 		return ;
+	}
+	
+	
+	public static void main(String[] args){
+		Integer[] elements = {50, 40, 30, 20, 10};
+		Sort sort = new InsertionSort();
+		sort.sort(elements);
+		
 	}
 }

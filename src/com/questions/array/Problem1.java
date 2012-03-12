@@ -51,16 +51,13 @@ public class Problem1 extends Problem{
 				int k = i;
 				out.print("\nSubset " + i  + ": ");
 				for(int j = 0; j < length; j++){
+					//use bit and operator to check whether the first bit is
+					//on or not
 					if((k & 1)==1) out.print(list.get(j) + ", ");
+					//remove the first bit
 					k = k >> 1;
 				}
-					
-					
-				
 			}
-			
-
-			
 		}
 
 		@Override

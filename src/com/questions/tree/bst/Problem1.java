@@ -7,8 +7,8 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 
-import com.data.BinarySearchTree;
-import com.data.BinarySearchTree.Node;
+import com.data.tree.binary.BinaryNode;
+import com.data.tree.binary.BinarySearchTree;
 import com.questions.Problem;
 import com.questions.Solution;
 import com.util.Read;
@@ -34,7 +34,7 @@ public class Problem1 extends TreeProblem{
 			BinarySearchTree bt = (BinarySearchTree) options.get("tree");
 			Queue<Object> queue = new LinkedList<Object>();
 			
-			queue.add(bt.getHead());
+			queue.add(bt.getRoot());
 			queue.add(null);
 		
 			while(!queue.isEmpty()){
@@ -47,10 +47,10 @@ public class Problem1 extends TreeProblem{
 					if(queue.peek() != null) queue.add(null);
 				}
 				else{
-					Node node = (Node) current;
-					writer.print(", " + node.value());
-					if(node.left() != null) queue.add(node.left());
-					if(node.right()!= null) queue.add(node.right());
+					BinaryNode node = (BinaryNode) current;
+					writer.print(", " + node.getValue());
+					if(node.getLeft() != null) queue.add(node.getLeft());
+					if(node.getRight()!= null) queue.add(node.getRight());
 				}
 			}
 			

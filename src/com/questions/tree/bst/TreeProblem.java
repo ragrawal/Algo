@@ -5,7 +5,7 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.data.BinarySearchTree;
+import com.data.tree.binary.BinarySearchTree;
 import com.questions.Problem;
 import com.util.Read;
 

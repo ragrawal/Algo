@@ -6,8 +6,8 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
-import com.data.BinarySearchTree;
 import com.data.SingleLinkedList;
+import com.data.tree.binary.BinarySearchTree;
 
 public class Read{
     PrintWriter writer; 

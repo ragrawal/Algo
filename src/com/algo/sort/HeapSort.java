@@ -13,6 +13,10 @@ public class HeapSort extends AbstractSort{
 	}
 	
 	public void sort(Comparable[] array){
-		return;
+		
+	}
+	
+	public void heapify(int i){
+		
 	}
 }

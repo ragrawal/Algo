@@ -9,8 +9,7 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Stack;
 
-import com.data.BinarySearchTree;
-import com.data.BinarySearchTree.Node;
+import com.data.tree.binary.BinarySearchTree;
 import com.questions.Problem;
 import com.questions.Solution;
 import com.util.Read;
@@ -33,6 +32,7 @@ public class Problem5 extends TreeProblem{
 
 		@Override
 		public void execute(Map options, PrintWriter out) {
+			
 			BinarySearchTree tree = ((BinarySearchTree) options.get("tree")).copy();
 			LinkedList<Node> queue = new LinkedList<Node>();
 			

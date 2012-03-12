@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 
-import com.data.BinarySearchTree;
-import com.data.BinarySearchTree.Node;
+import com.data.tree.binary.BinaryNode;
+import com.data.tree.binary.BinarySearchTree;
 import com.questions.Problem;
 import com.questions.Solution;
 import com.util.Read;
@@ -42,17 +42,17 @@ public class Problem4 extends TreeProblem{
 		}
 		
 	
-		private boolean verify(Node node, Comparable max, Comparable min){
+		private boolean verify(BinaryNode node, Comparable max, Comparable min){
 			if(node == null) return true;
-			Comparable value = node.value();
+			Comparable value = node.getKey();
 			boolean minStatus = (min == null || value.compareTo(min) >= 0);
 			boolean maxStatus = (max == null || value.compareTo(max) <= 0);
 			
 			if(!minStatus) return false;
 			if(!maxStatus) return false;
 			
-			if(!verify(node.left(), min, node.value())) return false;
-			if(!verify(node.right(), node.value(), max)) return false;
+			if(!verify(node.getLeft(), min, node.getKey())) return false;
+			if(!verify(node.getRight(), node.getKey(), max)) return false;
 			
 			return true;
 		}

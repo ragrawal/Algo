@@ -89,10 +89,13 @@ public class Problem1 extends Problem{
 			while(ptr2 != null){
 				ptr2 = ptr2.getNext();
 				
-				if(ptr2!= null) ptr2= ptr2.getNext();
-				else isOdd = true;
-				
-				if(ptr2 != null) ptr1 = ptr1.getNext();
+				if(ptr2!= null){
+					ptr2= ptr2.getNext();
+					ptr1 = ptr1.getNext();
+				}
+				else 
+					isOdd = true;
+
 			}
 			
 			if(isOdd){
@@ -129,6 +132,10 @@ public class Problem1 extends Problem{
 		public String spaceComplexity() {
 			return "O(3)";
 		}
+		
+	}
+	
+	public static void main(String[] args){
 		
 	}
 	

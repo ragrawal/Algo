@@ -205,4 +205,319 @@ Resources:
 http://www.java-questions.com/collections_interview_questions.html
 http://www.careercup.com/page?pid=hash-table-interview-questions
 
+==== HEAPS-SORT ==============
+		if index 1,  if index 0
+parent: 	i/2,	(i+1)/2 - i 
+left: 		2i, 	2*(i+1) - 1
+right: 		2i+1, 	2*(i+1)
+
+Heapify(A, i)
+	l <- left(i)
+	r <- right(i)
+	
+	//find largest among, i, l and r
+	largest = i
+	if(l < size && A[l] > A[i]) largest = l
+	if(r < size && A[r] > A[largest]) largest = r
+	
+	//swap and heapify
+	if(largest != i)
+		swap(i, largest)
+		heapify(A, largest)
+
+
+
+
+Build-Heap(A)
+ Heap-Size <- length(A)-1
+ for i <- parent(heap-size) to 0:
+	heapify(A, i)
+	
+
+Heap-Sort(A)
+	Build-Heap(A)
+	do
+		Swap(0, Heap-Size)
+		Heap-Size <- Heap-Size - 1
+		Heapify(A, 0)
+	while Heap-Size > 0		
+	Heap-Size <- length(A)-1
+
+* Idea: The head of the heap is always gauranted to be maximum element and hence after each heapify we move the head to the right of the heap and re-run heapify on the remaining non-sorted elements. 
+* Example:
+Initial: [10, 5, 18, 2, 34, 0]
+After Build-Heap: [ 34, 18, 10, 2, 5, 0 ]
+HeapSize: 5
+Do Loop Begins: 
+   HeapSize, ArrayElements
+      4,     [ 18, 5, 10, 2, 0 | 34 ]
+      3,     [ 10, 5, 0, 2 | 18, 34 ]
+      2,     [ 5, 2, 0 | 10, 18, 34 ]
+      1,     [ 2, 0 | 5, 10, 18, 34 ]
+      0,     [ 0 | 2, 5, 10, 18, 34 ]
+
+Final Array: [ 0, 2, 5, 10, 18, 34 ]
+
+
+
+==== QUICK-SORT ==============
+QuickSort(A, p, r):
+	if p < r
+		then q <- PARTITION(A, p, r)
+			 QuickSort(A, p, q-1)
+			 QuickSort(A, q+1, r)
+
+Partition(A, p, r):
+	//pivot value
+	x = A[r]
+	i = p-1
+	for j =  p to r -1
+		if A[j] <= x
+			i++
+			swap(i, j)
+	swap(i+1, r)
+	return i+1
+
+Example: [10, 5, 18, 2, 34, 0]
+
+
+====== COUNTING SORT =======
+* uses an auxillary array to store commulative sum of each value
+* Running time: O(n) -- linear times --beats quicksort
+* Stable algorithm - order of same value in the input array is changed.  Stability is desired in cases such as satellite data 
+                  
+
+==== DYNAMIC PROGRAMMING ======
+* cutrod problem
+* uses additional memory to save computation time - saving might be dramatic. An exponential problem might be converted into polynomial time solution
+* two ways to implement:
+	1. top-down with memoization -- write the procedure recursively in a natural manner but modified to save the result of each subproblem. We say that the recursive procedure has been memoized; it remembers what results it has computed previously.
+	2. bottom-up method - we sort subproblems by size and solve them in size order, smallest first . 
+	
+Recursive solution for cutting rod problem (extremely inefficient)
+p is price vector
+n is current length of rod
+CUT-ROD(p,n) -- running time = 2^(n-1)
+	if n == 0 return 0
+	q = -inf
+	for i = 1 to n
+		q = max(q, p[i] + CUT-ROD(p, n-i))
+	return q;
+
+MEMOIZED-CUT-ROD(p,n) --> running time n^2
+	//initialize an array with default 
+	//negative value
+	r = Array(n)
+	for i=0 to n
+		r[i] = -inf
+	return MEMOIZED-CUT-ROD-AUX(p, n, r)
+
+//Same as recursive version
+//but we save result in a table	
+MEMORIZED-CUT-ROD-AUX(p, n, r)
+	if r[n] >= 0
+		return r[n]
+	
+	q = -inf
+	if n == 0
+		q == 0
+	else
+		for i=1 to n
+			q = max(q, p[i] + MEMOIZED-CUT-ROD-AUX(p, n-i, r))
+	r[n] = q
+	return q
+
+BOTTOM-UP-CUT-ROD(p, n)  ---> running time n^2
+	r = Array(n)
+	r[0] = 0
+	for j = 1 to n
+		q = -inf
+		for i = 1 to j
+			q = max(q, p[i] + r[j-i])
+		r[j] = q
+	return r[n]
+
+
+MODIFY THE PROBLEM TO RETURN CUT-SIZES
+EXTENDED-BOTTOM-UP-CUT-ROD(p,n)
+	r = Array(n)
+	//initialize another array to store sizes
+	s = Array(n)
+	r[0] = 0
+	for j = 1 to n
+		q = -inf
+		for i = 1 to i
+			if q < p[i] + r[j-i]
+				q = p[i] + r[j-i]
+				s[j] = i
+		r[j] = q
+	return r and s
+
+====== GRAPH =======
+Two ways to represent graphs:
+	Adjacency List: Space Efficient but requires time to determine if an edge exists between two vertices. 
+	Adjacency Matrix: Allows to determine whether an edge exists in constant time. Requires only bit per edge
+	
+BREADTH-FIRST-SEARCH(G, F, T)
+	** Uses White/Gray/Black Nodes
+	** 
+
+http://www.johnandcailin.com/blog/cailin/breadth-first-graph-search-using-iterative-map-reduce-algorithm
+
+==== general java questions ====
+1. what is transient variable: variables that do not get serialized 
+2. Explain the concept of shallow copy vs deep copy 
+	Shallow copy -- cloned object also refers to the same object to which the original object refers. Use clone() to create shallow copy
+	Deep copy - clone of the class and all the objects referred by that class. To make deep copy, implement Cloneable interface and call its clone() method. 
+
+3. What do you understand by synchornization ? How do synchronize a method call in java? How do you synchornize a block of code in java
+	* Synchronization is a process of controlling the access of shared resources by the multiple threads in such a manner that only one thread can access one resource at a time. 
+	* Synchornizing a method: Put keyword synchronized as part of the method declaration
+	* Synchronizing a block of code: Put block of code in synchronized(this){ some code}
+	
+4. Explain encapsulation, inheritance and polymorphism
+	* Encapsulation: binding or wrapping the data nad the codes that operates on the data into a single entity
+	* inheritance: extending the class
+	* polymorphism: using interface and implementations
+	
+5. Similarities and differences between abstract class and interface
+	* both can't be instantiated
+	* interfaces are limited to public methods and contains no implementation. 
+	* A class may implement several interfaces. But an abstract class can only extend one abstract class
+	* Interfaces are slow as it requires extra indirection to find corresponding method in the actual class. Abstract classes are fast
+
+6. How to declare class variable in java
+	* Use static modifier
+
+
+7. Design a data structure that offers the following operations in O(1) time: insert, remove, contains, getRandom element
+	* Use HashTable and Array. 
+		HashTable keys are the elements in the data structure and values are their positions in the array
+	* Insert(value): Append the value to array and let i be its index in the array. Set Hash[value] = i
+	* Remove(value): Use Hash to find its position in array. Let say its i. Replace Array[i] with the last element of array. Let say its d and decrement array size by 1
+			i = Hash[key(value)]
+			last = A[array_size]
+			A[i] = last
+			Hash[key(last)] = i
+			Hash.remove(key(value))
+			array_size--;
+	* contains(value): return H.contains(value)
+	* getRandomeElement(): let r = A[random(array_size)]
+
+8. Difference between process and threads
+	* Both processes and threads are independent sequences of execution. 
+	* Threads run in a shared memory space, while processes run in separate memory spaces
+	* Each process provides the resources needed to execute a program. A program has a vital address space, executable code, open handles to systems object, a unique process identifier, environment variable, priority class, .... Each process is started with a single thread, often called the primary thread but can create additional threads from any of its thread
+	* A thread is the entity within a process that can be scheduled for execution. All threads of a process share its virtual address space and system resources. In addition, each thread maintains exception handlers, a scheduling priority, thread local storage, a unique thread identifer, and a set of structures the system will use to save the thread context until it is scheduled. 
+	
+		
+===== java interview questions 
+1. Generate all possible subsets of an array of elements
+	* Number of possible subsets: O(2^N)
+	* Bit representation of 0 to 2^N indicates all possible subsets
+	POWER-SET(A)
+		subsets = 2^N
+		for i <- 0 to subsets-1
+			k <- i
+			subset = []
+			for j <- 0 to A.length-1
+				if (k & 1) == 1
+					subset << A[j]
+				k = k >> 1 
+			print subset
+
+2. Find the middle element of a single linked list in a single pass
+	* Use two pointers. Initialize both pointing to the root of the list
+	* Increment the first pointer by two and the second by one. 
+	* When the first pointer reaches the end, the second will reach to the middle
+	* Cases:
+		Odd number of elements versus even number of elements
+		what happens if root is null
+		what happens if there is only one element
+	*Example
+		OddList
+			A -> B -> C -> D -> E
+			initialize i = j = A
+			i = C, j = B, odd=False
+			i = E, j = C, odd=False
+			i = Null, j = C, odd=True
+			MiddleElement = j
+			
+		EvenList
+			A -> B -> C -> D -> E -> F
+			initialize i = j = A
+			i = C, j = B, odd = False
+			i = E, j = C, odd = False
+			i = F, j = C, odd = False
+		    MiddleElement = C, D
+		
+		Only one element
+			i = j = A
+			i = NULL, j = A, odd = true
+			MiddleElement = A
+		
+	MIDDLE-ELEMENT(root)
+		if root == null
+			return
+			
+		i <- root
+		j <- root
+		oddElements = false
+		
+		while(i != null)
+			i <- i.next
+			if(i != null) 
+				i <- i.next
+				j <- j.next
+			else odd = true
+			
+
+3. Reverse a single linked list in place
+	* Use three pointers to keep track of prev, current and next
+	* Example
+		A -> B -> C -> D -> E
+		prev = next = Null
+		current = root
+		
+		prev, current, next, list
+		A, C, B, NULL <- A, B -> C -> D -> E
+		
+	
+	REVERSE-IN-PLACE(ROOT)
+		if root = NIL
+			return
+		prev = NULL
+		current = root
+		next = NULL
+		
+		while(current != null)
+			next = current.next
+			current.next = prev
+			prev = current
+			current = next
+			
+		return parent
+		
+4. Determine if a linked list is pallidrome
+	* Use two pointers. Increment the first by two and the second by one
+	* Until first pointer reaches the end, use stack to store values traversed by first
+	* After the first pointer reaches the end, pop values from stack and check if they matches current value of the second pointer
+	
+	IS-PALLIDROME(ROOT)
+		i, j <- root
+		s = stack()
+		isOdd = 
+		while(j != null)
+			
+		
+		
+	
+
+		
+	
+
+
+
+
+
 
