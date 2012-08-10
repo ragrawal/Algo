@@ -105,6 +105,7 @@ public class SingleLinkedList {
 		}
 		print(head, writer);
 	}
+	
 	public static void print(Node head, PrintWriter writer){
 		Node current = head;
 		while(current != null){
@@ -143,6 +144,10 @@ public class SingleLinkedList {
 		
 		public void setNext(Node n){
 			this.next = n;
+		}
+		
+		public String toString(){
+			return this.value.toString();
 		}
 	}
 	

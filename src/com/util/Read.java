@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import com.data.SingleLinkedList;
+import com.data.tree.binary.BinaryNode;
 import com.data.tree.binary.BinarySearchTree;
 
 public class Read{
@@ -42,6 +43,7 @@ public class Read{
     public ArrayList<Integer> intArray() throws Exception{
     	return intArray("Enter number (press q if done): ");
     }
+    
     public Comparable[][] intMatrix() throws Exception {
  	   writer.print("Enter Matrix Size (Row, Col): ");
  	   String[] numbers = reader.readLine().split(",");
@@ -64,10 +66,6 @@ public class Read{
  	   return matrix;
  	}
  	
-
-    
-    
-    
 
     public ArrayList<Integer> intArray(String message) throws Exception{
     	ArrayList<Integer> elements = new ArrayList<Integer>();
@@ -104,8 +102,10 @@ public class Read{
         int length = new Integer(reader.readLine()).intValue(); 
         Random random = new Random();
         BinarySearchTree tree = new BinarySearchTree();
-        for(int i =0; i< length; i++)
-        	tree.add(new Integer(random.nextInt(length * 10)));
+        for(int i =0; i< length; i++){
+        	Integer key = new Integer(random.nextInt(length * 10));
+        	tree.add(new BinaryNode(key,  key));
+        }
         return tree;
     }
     
@@ -115,11 +115,20 @@ public class Read{
            writer.print("Enter node value (enter q if done): "); writer.flush();
            String value = reader.readLine();
            if(STOP.equalsIgnoreCase(value)) break;
-           tree.add(new Integer(value));
+           tree.add(new BinaryNode(value, value));
         }
         return tree;
     }
 
+    public SingleLinkedList randomSingleLinkedList() throws Exception{
+    	int size = this.integer("Enter length of linked list: ").intValue();
+    	ArrayList<Integer> values = this.randomIntArray(size, size*4);
+    	SingleLinkedList sll = new SingleLinkedList();
+    	for(int i=0; i<values.size(); i++)
+    		sll.add(values.get(i));
+    	return sll;
+    	
+    }
     public SingleLinkedList singleLinkedList() throws Exception{
     	SingleLinkedList sll = new SingleLinkedList();
     	writer.println("Creating a single linked list"); writer.flush();
@@ -127,5 +136,14 @@ public class Read{
     	for(Integer elem: elements)
     		sll.add(elem);
     	return sll;
+    }
+    
+    public ArrayList<Integer> randomIntArray(int size, int limit){
+    	ArrayList<Integer> values = new ArrayList<Integer>();
+    	Random random = new Random();
+    	writer.println("Creating " + new Integer(size) + " numbers");
+    	for(int i=0; i<size; i++)
+    		values.add(new Integer(random.nextInt(limit)));
+    	return values;
     }
 }

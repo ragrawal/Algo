@@ -5,6 +5,7 @@ com.questions.string.Problem2
 com.questions.string.Problem3
 com.questions.string.Problem4
 com.questions.string.Problem6
+com.questions.string.Problem7
 
 com.questions.tree.bst.Problem1
 com.questions.tree.bst.Problem3
@@ -14,6 +15,7 @@ com.questions.linkedlist.single.Problem2
 com.questions.linkedlist.single.Problem3
 com.questions.linkedlist.single.Problem4
 com.questions.linkedlist.single.Problem5
+com.questions.linkedlist.single.Problem6
 
 com.questions.array.Problem1
 

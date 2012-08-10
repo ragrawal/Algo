@@ -40,11 +40,12 @@ public class Problem6 extends Problem{
 			ArrayList<String> store = new ArrayList<String>();
 			permutation("", input, store);
 			for(String s : store)
-				out.println(s);
+				System.out.println(s);
 			
 		}
 		
 		private void permutation(String prefix, String suffix, ArrayList store){
+			System.out.printf("Prefix:%s, Suffix: %s\n", prefix, suffix);
 			if(suffix.length() == 0){
 				store.add(prefix);
 				return;

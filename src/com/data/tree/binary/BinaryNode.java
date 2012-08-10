@@ -13,6 +13,7 @@ public class BinaryNode {
 	public BinaryNode(){}
 	public BinaryNode(Comparable key){
 		this.key = key;
+		this.value = key;
 	}
 	public BinaryNode(Comparable key, Object value){
 		this.key = key;
